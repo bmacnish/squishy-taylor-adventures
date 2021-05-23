@@ -1,4 +1,4 @@
-interface ChapterType {
+export interface ChapterType {
   chapterNumber: string
   title: string
   text: string

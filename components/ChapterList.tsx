@@ -1,16 +1,13 @@
 import React from 'react'
 import { FlatList, View, Text, StyleSheet } from 'react-native'
 import { chapters } from '../constants/Chapters'
+import ChapterListItem from './ChapterListItem'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22,
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+    width: '100%',
   },
 })
 
@@ -18,8 +15,10 @@ export default function ChapterList() {
   return (
     <View style={styles.container}>
       <FlatList
+        // style={{ alignSelf: 'stretch' }}
         data={chapters}
-        renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
+        keyExtractor={(item) => item.chapterNumber}
+        renderItem={({ item }) => <ChapterListItem chapterData={item} />}
       />
     </View>
   )
