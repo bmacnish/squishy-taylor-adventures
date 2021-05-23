@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import * as React from 'react'
+import { StyleSheet } from 'react-native'
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import ChapterList from '../components/ChapterList';
+import { View } from '../components/Themed'
+import ChapterList from '../components/ChapterList'
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-     <ChapterList />
+      <ChapterList />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -28,4 +27,4 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-});
+})
