@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 import { View } from '../components/Themed'
 import ChapterList from '../components/ChapterList'
 
-export default function TabOneScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ChapterList />
