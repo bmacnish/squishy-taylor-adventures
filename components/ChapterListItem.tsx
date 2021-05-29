@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  FlatList,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
-import { chapters, ChapterType } from '../constants/Chapters'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { ChapterType } from '../constants/Chapters'
 import { MaterialIcons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
   container: {
@@ -38,8 +33,14 @@ interface ChapterListItemPropType {
 export default function ChapterListItem({
   chapterData,
 }: ChapterListItemPropType) {
+  const navigation = useNavigation()
+
+  const onPress = () => {
+    navigation.navigate('ChapterScreen')
+  }
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.chapterItem}>
         <Text style={styles.listHeading}>
           {chapterData.chapterNumber.toUpperCase()}

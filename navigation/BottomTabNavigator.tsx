@@ -10,6 +10,7 @@ import * as React from 'react'
 
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
+import ChapterScreen from '../screens/ChapterScreen'
 import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import { BottomTabParamList, HomeParamList, SettingsParamList } from '../types'
@@ -67,6 +68,7 @@ function HomeNavigator() {
         component={HomeScreen}
         options={{ headerTitle: 'The City-Wide Ghost Plague' }}
       />
+      <HomeStack.Screen name="ChapterScreen" component={ChapterScreen} />
     </HomeStack.Navigator>
   )
 }
