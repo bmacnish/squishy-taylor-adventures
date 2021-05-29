@@ -6,7 +6,6 @@ import ChapterListItem from './ChapterListItem'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
     width: '100%',
   },
 })
@@ -15,7 +14,6 @@ export default function ChapterList() {
   return (
     <View style={styles.container}>
       <FlatList
-        // style={{ alignSelf: 'stretch' }}
         data={chapters}
         keyExtractor={(item) => item.chapterNumber}
         renderItem={({ item }) => <ChapterListItem chapterData={item} />}

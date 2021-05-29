@@ -7,20 +7,23 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { chapters, ChapterType } from '../constants/Chapters'
+import { MaterialIcons } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: 'stretch',
-    paddingHorizontal: 28,
-    marginBottom: 28,
+    paddingHorizontal: 8,
+  },
+  chapterItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
   },
   listHeading: {
     fontSize: 20,
-    paddingBottom: 4,
   },
   separator: {
-    paddingTop: 8,
     borderBottomWidth: 1,
     width: '100%',
     alignSelf: 'center',
@@ -37,7 +40,12 @@ export default function ChapterListItem({
 }: ChapterListItemPropType) {
   return (
     <TouchableOpacity style={styles.container}>
-      <Text style={styles.listHeading}>{chapterData.chapterNumber}</Text>
+      <View style={styles.chapterItem}>
+        <Text style={styles.listHeading}>
+          {chapterData.chapterNumber.toUpperCase()}
+        </Text>
+        <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+      </View>
       <View style={styles.separator} />
     </TouchableOpacity>
   )
