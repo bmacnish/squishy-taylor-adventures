@@ -35,12 +35,15 @@ export default function ChapterListItem({
 }: ChapterListItemPropType) {
   const navigation = useNavigation()
 
-  const onPress = () => {
-    navigation.navigate('ChapterScreen')
+  const onPress = (chapterId: number) => {
+    navigation.navigate('ChapterScreen', { chapterId: chapterId })
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => onPress(chapterData.chapterId)}
+    >
       <View style={styles.chapterItem}>
         <Text style={styles.listHeading}>
           {chapterData.chapterNumber.toUpperCase()}

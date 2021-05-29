@@ -1,4 +1,5 @@
 export interface ChapterType {
+  chapterId: number
   chapterNumber: string
   title: string
   text: string
@@ -6,6 +7,7 @@ export interface ChapterType {
 
 export const chapters: Array<ChapterType> = [
   {
+    chapterId: 1,
     chapterNumber: 'Chapter One',
     title: 'There’s a ghost mystery…will you help me solve it?',
     text: `Hi! It’s me, Squishy Taylor. I love solving mysteries! And I’m pretty good at it!
@@ -27,6 +29,7 @@ export const chapters: Array<ChapterType> = [
           on the next page for you to see.`,
   },
   {
+    chapterId: 2,
     chapterNumber: 'Chapter Two',
     title: 'The ghost map gets bigger',
     text: `You’ve definitely proved that you’re excellent at sleuthing. I’d love for you to solve this 
@@ -44,6 +47,7 @@ export const chapters: Array<ChapterType> = [
           hear from me!`,
   },
   {
+    chapterId: 3,
     chapterNumber: 'Chapter Three',
     title: 'Venture into the night!',
     text: `Thanks for that map. That definitely looks like a place where the lights are on day and night. 
