@@ -2,22 +2,19 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { ChapterType } from '../constants/Chapters'
 import { MaterialIcons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
+import { H3Text, H4Text } from './StyledText'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   chapterItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 12,
-  },
-  listHeading: {
-    fontSize: 20,
+    paddingTop: 20,
+    paddingBottom: 4,
+    alignItems: 'center',
   },
   separator: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     width: '100%',
     alignSelf: 'center',
     borderBottomColor: '#bbb',
@@ -31,6 +28,7 @@ interface ChapterListItemPropType {
 export default function ChapterListItem({
   chapterData,
 }: ChapterListItemPropType) {
+  const { colors } = useTheme()
   const navigation = useNavigation()
 
   const onPress = (chapterId: number) => {
@@ -38,17 +36,16 @@ export default function ChapterListItem({
   }
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => onPress(chapterData.chapterId)}
-    >
+    <TouchableOpacity onPress={() => onPress(chapterData.chapterId)}>
       <View style={styles.chapterItem}>
-        <Text style={styles.listHeading}>
-          {chapterData.chapterNumber.toUpperCase()}
-        </Text>
-        <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+        <H3Text>{chapterData.chapterNumber.toUpperCase()}</H3Text>
+        <MaterialIcons
+          name="keyboard-arrow-right"
+          size={28}
+          color={colors.text}
+        />
       </View>
-      <View style={styles.separator} />
+      <View style={[styles.separator, { borderBottomColor: colors.border }]} />
     </TouchableOpacity>
   )
 }

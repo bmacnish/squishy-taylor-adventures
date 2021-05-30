@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { Audio, AVPlaybackStatus } from 'expo-av'
 import { AntDesign } from '@expo/vector-icons'
-import { Body1 } from './StyledText'
+import { Body1, LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
-  audioControls: {
+  container: {
     paddingVertical: 12,
     borderRadius: 20,
     alignSelf: 'stretch',
@@ -13,23 +13,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: '#eee',
   },
-  audioControlElement: {
+  button: {
     alignItems: 'center',
+  },
+  text: {
+    paddingTop: 4,
+    color: 'black',
   },
 })
 
 export default function AudioPlayer() {
   const [sound, setSound] = useState<Audio.Sound | null>()
-  const [status, setStatus] = useState<AVPlaybackStatus | null>()
 
   useEffect(() => {
     const initializeAudio = async () => {
-      const { sound, status } = await Audio.Sound.createAsync(
+      const { sound } = await Audio.Sound.createAsync(
         require(`../assets/audio/chapterAudio/1.mp3`)
       )
 
       setSound(sound)
-      setStatus(status)
     }
 
     initializeAudio()
@@ -49,7 +51,6 @@ export default function AudioPlayer() {
     )
 
     setSound(sound)
-    setStatus(status)
 
     await sound?.playAsync()
   }
@@ -63,21 +64,18 @@ export default function AudioPlayer() {
       : undefined
   }, [sound])
   return (
-    <View style={styles.audioControls}>
-      <TouchableOpacity style={styles.audioControlElement} onPress={playAudio}>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={playAudio}>
         <AntDesign name="playcircleo" size={24} color="black" />
-        <Body1 style={{ paddingTop: 4 }}>PLAY</Body1>
+        <LabelText style={styles.text}>PLAY</LabelText>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.audioControlElement} onPress={pauseAudio}>
+      <TouchableOpacity style={styles.button} onPress={pauseAudio}>
         <AntDesign name="pausecircleo" size={24} color="black" />
-        <Body1 style={{ paddingTop: 4 }}>PAUSE</Body1>
+        <LabelText style={styles.text}>PAUSE</LabelText>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.audioControlElement}
-        onPress={restartAudio}
-      >
+      <TouchableOpacity style={styles.button} onPress={restartAudio}>
         <AntDesign name="sync" size={24} color="black" />
-        <Body1 style={{ paddingTop: 4 }}>RESTART</Body1>
+        <LabelText style={styles.text}>RESTART</LabelText>
       </TouchableOpacity>
     </View>
   )

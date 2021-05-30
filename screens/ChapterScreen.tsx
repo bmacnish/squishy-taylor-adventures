@@ -6,6 +6,7 @@ import { Body1, H1Text, H2Text, H4Text } from '../components/StyledText'
 import AudioPlayer from '../components/AudioPlayer'
 import DropDownText from '../components/DropDownText'
 import getChapterById from '../helpers/getChapterDataById'
+import { useTheme } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +14,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 8,
-    backgroundColor: 'white',
   },
   header: {
     alignItems: 'center',
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 })
 
 export default function ChapterScreen({ route }) {
+  const { colors } = useTheme()
   const { chapterId } = route.params
 
   const chapter = getChapterById(chapterId)
@@ -33,7 +34,9 @@ export default function ChapterScreen({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <H1Text style={styles.h1}>{chapter.chapterNumber}</H1Text>
+        <H1Text style={[styles.h1, { color: colors.text }]}>
+          {chapter.chapterNumber}
+        </H1Text>
         <H4Text>{chapter.title}</H4Text>
       </View>
       <AudioPlayer />
