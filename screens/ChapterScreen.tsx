@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-  ScrollView,
-} from 'react-native'
+import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { chapters } from '../constants/Chapters'
-import { Audio, AVPlaybackStatus } from 'expo-av'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1, H1Text, H2Text, H4Text } from '../components/StyledText'
+import AudioPlayer from '../components/AudioPlayer'
 
 const styles = StyleSheet.create({
   container: {
@@ -27,17 +20,6 @@ const styles = StyleSheet.create({
   h1: {
     paddingTop: 24,
     paddingBottom: 16,
-  },
-  audioControls: {
-    paddingVertical: 12,
-    borderRadius: 20,
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#eee',
-  },
-  audioControlElement: {
-    alignItems: 'center',
   },
   textToggleBarContainer: {
     flex: 1,
@@ -60,8 +42,6 @@ const styles = StyleSheet.create({
 })
 
 export default function ChapterScreen({ route }) {
-  const [sound, setSound] = useState<Audio.Sound | null>()
-  const [status, setStatus] = useState<AVPlaybackStatus | null>()
   const [toggleText, setToggleText] = useState(false)
 
   const { chapterId } = route.params
@@ -72,76 +52,13 @@ export default function ChapterScreen({ route }) {
 
   const chapter = getChapterById(chapterId)
 
-  useEffect(() => {
-    const initializeAudio = async () => {
-      const { sound, status } = await Audio.Sound.createAsync(
-        require(`../assets/audio/chapterAudio/1.mp3`)
-      )
-
-      setSound(sound)
-      setStatus(status)
-    }
-
-    initializeAudio()
-  }, [])
-
-  const playAudio = async () => {
-    await sound?.playAsync()
-  }
-
-  const pauseAudio = async () => {
-    await sound?.pauseAsync()
-  }
-
-  const restartAudio = async () => {
-    const { sound, status } = await Audio.Sound.createAsync(
-      require(`../assets/audio/chapterAudio/1.mp3`)
-    )
-
-    setSound(sound)
-    setStatus(status)
-
-    await sound?.playAsync()
-  }
-
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log('Unloading Sound')
-          sound.unloadAsync()
-        }
-      : undefined
-  }, [sound])
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <H1Text style={styles.h1}>{chapter.chapterNumber}</H1Text>
         <H4Text>{chapter.title}</H4Text>
       </View>
-      <View style={styles.audioControls}>
-        <TouchableOpacity
-          style={styles.audioControlElement}
-          onPress={playAudio}
-        >
-          <AntDesign name="playcircleo" size={24} color="black" />
-          <Body1 style={{ paddingTop: 4 }}>PLAY</Body1>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.audioControlElement}
-          onPress={pauseAudio}
-        >
-          <AntDesign name="pausecircleo" size={24} color="black" />
-          <Body1 style={{ paddingTop: 4 }}>PAUSE</Body1>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.audioControlElement}
-          onPress={restartAudio}
-        >
-          <AntDesign name="sync" size={24} color="black" />
-          <Body1 style={{ paddingTop: 4 }}>RESTART</Body1>
-        </TouchableOpacity>
-      </View>
+      <AudioPlayer />
       <View style={styles.textToggleBarContainer}>
         <View style={styles.textToggleBar}>
           <Body1>READ ALONG</Body1>
