@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   audioControls: {
-    paddingVertical: 24,
+    paddingVertical: 12,
     borderRadius: 20,
     alignSelf: 'stretch',
     flexDirection: 'row',
@@ -36,15 +36,29 @@ const styles = StyleSheet.create({
   audioControlElement: {
     alignItems: 'center',
   },
+  textToggleBarContainer: {
+    flex: 1,
+    width: '100%',
+  },
+  textToggleBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 24,
+    marginBottom: 8,
+    alignSelf: 'stretch',
+    backgroundColor: 'gray',
+    padding: 8,
+  },
   textContainer: {
     flex: 1,
-    paddingTop: 24,
+    paddingBottom: 52,
   },
 })
 
 export default function ChapterScreen({ route }) {
   const [sound, setSound] = useState<Audio.Sound | null>()
   const [status, setStatus] = useState<AVPlaybackStatus | null>()
+  const [toggleText, setToggleText] = useState(false)
 
   const { chapterId } = route.params
 
@@ -124,9 +138,23 @@ export default function ChapterScreen({ route }) {
           <Body1 style={{ paddingTop: 4 }}>RESTART</Body1>
         </TouchableOpacity>
       </View>
-      <ScrollView style={styles.textContainer}>
-        <Body1>{chapter.text}</Body1>
-      </ScrollView>
+      <View style={styles.textToggleBarContainer}>
+        <View style={styles.textToggleBar}>
+          <Body1>SHOW TEXT</Body1>
+          <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
+            {!toggleText ? (
+              <AntDesign name="down-square-o" size={24} color="black" />
+            ) : (
+              <AntDesign name="closesquareo" size={24} color="black" />
+            )}
+          </TouchableOpacity>
+        </View>
+        {toggleText && (
+          <ScrollView style={styles.textContainer}>
+            <Body1>{chapter.text}</Body1>
+          </ScrollView>
+        )}
+      </View>
     </View>
   )
 }
