@@ -18,12 +18,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 8,
-    paddingTop: 24,
     backgroundColor: 'white',
   },
   header: {
     alignItems: 'center',
     marginBottom: 24,
+  },
+  h1: {
+    paddingTop: 24,
+    paddingBottom: 16,
   },
   audioControls: {
     paddingVertical: 12,
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: 'pink',
+    backgroundColor: '#eee',
   },
   audioControlElement: {
     alignItems: 'center',
@@ -44,10 +47,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 24,
-    marginBottom: 8,
+    marginBottom: 16,
     alignSelf: 'stretch',
-    backgroundColor: 'gray',
     padding: 8,
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
   },
   textContainer: {
     flex: 1,
@@ -112,7 +116,7 @@ export default function ChapterScreen({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <H1Text>{chapter.chapterNumber}</H1Text>
+        <H1Text style={styles.h1}>{chapter.chapterNumber}</H1Text>
         <H4Text>{chapter.title}</H4Text>
       </View>
       <View style={styles.audioControls}>
@@ -140,7 +144,7 @@ export default function ChapterScreen({ route }) {
       </View>
       <View style={styles.textToggleBarContainer}>
         <View style={styles.textToggleBar}>
-          <Body1>SHOW TEXT</Body1>
+          <Body1>READ ALONG</Body1>
           <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
             {!toggleText ? (
               <AntDesign name="down-square-o" size={24} color="black" />
