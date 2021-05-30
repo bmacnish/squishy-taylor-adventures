@@ -68,7 +68,11 @@ function HomeNavigator() {
         component={HomeScreen}
         options={{ headerTitle: 'The City-Wide Ghost Plague' }}
       />
-      <HomeStack.Screen name="ChapterScreen" component={ChapterScreen} />
+      <HomeStack.Screen
+        name="ChapterScreen"
+        component={ChapterScreen}
+        options={({ route }) => ({ title: route.params.name })}
+      />
     </HomeStack.Navigator>
   )
 }

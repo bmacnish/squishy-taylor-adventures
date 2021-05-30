@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { ChapterType } from '../constants/Chapters'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation, useTheme } from '@react-navigation/native'
-import { H3Text, H4Text } from './StyledText'
+import { H3Text } from './StyledText'
+import getChapterDataById from '../helpers/getChapterDataById'
 
 const styles = StyleSheet.create({
   chapterItem: {
@@ -32,7 +33,10 @@ export default function ChapterListItem({
   const navigation = useNavigation()
 
   const onPress = (chapterId: number) => {
-    navigation.navigate('ChapterScreen', { chapterId: chapterId })
+    navigation.navigate('ChapterScreen', {
+      chapterId: chapterId,
+      name: chapterData.chapterNumber,
+    })
   }
 
   return (

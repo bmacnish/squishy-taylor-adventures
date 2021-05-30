@@ -11,7 +11,7 @@ export const chapters: Array<ChapterType> = [
   {
     chapterId: 1,
     chapterNumber: 'Chapter One',
-    title: 'There’s a ghost mystery…will you help me solve it?',
+    title: 'There’s a ghost mystery...',
     text: text.chapterOne,
   },
   {

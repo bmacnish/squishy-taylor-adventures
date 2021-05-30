@@ -1,43 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import { chapters } from '../constants/Chapters'
-import { AntDesign } from '@expo/vector-icons'
-import { Body1, H1Text, H2Text, H4Text } from '../components/StyledText'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import { H2Text } from '../components/StyledText'
 import AudioPlayer from '../components/AudioPlayer'
 import DropDownText from '../components/DropDownText'
 import getChapterById from '../helpers/getChapterDataById'
 import { useTheme } from '@react-navigation/native'
+import { toTitleCase } from '../helpers/textHelpers'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingHorizontal: 8,
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 24,
+  titleContainer: {
+    marginVertical: 24,
   },
-  h1: {
-    paddingTop: 24,
-    paddingBottom: 16,
+  title: {
+    textAlign: 'center',
   },
 })
 
 export default function ChapterScreen({ route }) {
-  const { colors } = useTheme()
   const { chapterId } = route.params
 
   const chapter = getChapterById(chapterId)
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <H1Text style={[styles.h1, { color: colors.text }]}>
-          {chapter.chapterNumber}
-        </H1Text>
-        <H4Text>{chapter.title}</H4Text>
+      <View style={styles.titleContainer}>
+        <H2Text style={styles.title}>{toTitleCase(chapter.title)}</H2Text>
       </View>
       <AudioPlayer />
       <DropDownText chapterId={chapterId} />
