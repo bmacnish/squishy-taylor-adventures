@@ -4,6 +4,8 @@ import { chapters } from '../constants/Chapters'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1, H1Text, H2Text, H4Text } from '../components/StyledText'
 import AudioPlayer from '../components/AudioPlayer'
+import DropDownText from '../components/DropDownText'
+import getChapterById from '../helpers/getChapterDataById'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,34 +23,10 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingBottom: 16,
   },
-  textToggleBarContainer: {
-    flex: 1,
-    width: '100%',
-  },
-  textToggleBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 24,
-    marginBottom: 16,
-    alignSelf: 'stretch',
-    padding: 8,
-    borderBottomColor: 'black',
-    borderBottomWidth: 2,
-  },
-  textContainer: {
-    flex: 1,
-    paddingBottom: 52,
-  },
 })
 
 export default function ChapterScreen({ route }) {
-  const [toggleText, setToggleText] = useState(false)
-
   const { chapterId } = route.params
-
-  const getChapterById = (chapterId: number) => {
-    return chapters.filter((chapter) => chapter.chapterId === chapterId)[0]
-  }
 
   const chapter = getChapterById(chapterId)
 
@@ -59,23 +37,7 @@ export default function ChapterScreen({ route }) {
         <H4Text>{chapter.title}</H4Text>
       </View>
       <AudioPlayer />
-      <View style={styles.textToggleBarContainer}>
-        <View style={styles.textToggleBar}>
-          <Body1>READ ALONG</Body1>
-          <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
-            {!toggleText ? (
-              <AntDesign name="down-square-o" size={24} color="black" />
-            ) : (
-              <AntDesign name="closesquareo" size={24} color="black" />
-            )}
-          </TouchableOpacity>
-        </View>
-        {toggleText && (
-          <ScrollView style={styles.textContainer}>
-            <Body1>{chapter.text}</Body1>
-          </ScrollView>
-        )}
-      </View>
+      <DropDownText chapterId={chapterId} />
     </View>
   )
 }
