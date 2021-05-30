@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { Audio, AVPlaybackStatus } from 'expo-av'
 import { AntDesign } from '@expo/vector-icons'
-import { Body1, LabelText } from './StyledText'
+import { LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
   container: {
