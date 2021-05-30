@@ -7,8 +7,6 @@ import { useNavigation } from '@react-navigation/native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: 'stretch',
-    paddingHorizontal: 8,
   },
   chapterItem: {
     flexDirection: 'row',
