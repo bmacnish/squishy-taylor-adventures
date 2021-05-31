@@ -5,6 +5,8 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { H3Text } from './StyledText'
 import getChapterDataById from '../helpers/getChapterDataById'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { HomeParamList } from '../types'
 
 const styles = StyleSheet.create({
   chapterItem: {

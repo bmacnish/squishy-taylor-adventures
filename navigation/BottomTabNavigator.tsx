@@ -71,7 +71,10 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="ChapterScreen"
         component={ChapterScreen}
-        options={({ route }) => ({ title: route.params.name })}
+        options={({ route }) => ({
+          chapterId: route.params.chapterId,
+          title: route.params.title,
+        })}
       />
     </HomeStack.Navigator>
   )

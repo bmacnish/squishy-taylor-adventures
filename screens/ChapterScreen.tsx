@@ -4,8 +4,9 @@ import { H2Text } from '../components/StyledText'
 import AudioPlayer from '../components/AudioPlayer'
 import DropDownText from '../components/DropDownText'
 import getChapterById from '../helpers/getChapterDataById'
-import { useTheme } from '@react-navigation/native'
 import { toTitleCase } from '../helpers/textHelpers'
+import { RouteProp } from '@react-navigation/native'
+import { HomeParamList } from '../types'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,13 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function ChapterScreen({ route }) {
+type ChapterScreenRouteProp = RouteProp<HomeParamList, 'ChapterScreen'>
+
+type ChapterScreenProps = {
+  route: ChapterScreenRouteProp
+}
+
+export default function ChapterScreen({ route }: ChapterScreenProps) {
   const { chapterId } = route.params
 
   const chapter = getChapterById(chapterId)

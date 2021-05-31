@@ -15,7 +15,7 @@ export type BottomTabParamList = {
 
 export type HomeParamList = {
   HomeScreen: undefined
-  ChapterScreen: undefined
+  ChapterScreen: { chapterId: number; title: string }
 }
 
 export type SettingsParamList = {
