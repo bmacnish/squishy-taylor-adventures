@@ -1,10 +1,10 @@
 # Project TODO
 
 ## Types
-- [ ] Add types to react navigation following this [documentation](https://reactnavigation.org/docs/typescript/)
+- [x] Add types to react navigation following this [documentation](https://reactnavigation.org/docs/typescript/)
 
 ## UI
-- [ ] Add design for the Chapter Screen
+- [x] Add design for the Chapter Screen
 
 ## Project admin
 - [ ] Add a github repo for the project

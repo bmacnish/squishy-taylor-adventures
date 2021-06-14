@@ -1,8 +1,8 @@
 import React from 'react'
-import { FlatList, View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { chapters } from '../constants/Chapters'
-import ChapterListItem from '../components/ChapterListItem'
 import { useTheme } from '@react-navigation/native'
+import CardCarousel from '../components/CardCarousel'
 
 const styles = StyleSheet.create({
   container: {
@@ -16,11 +16,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={chapters}
-        keyExtractor={(item) => item.chapterNumber}
-        renderItem={({ item }) => <ChapterListItem chapterData={item} />}
-      />
+      <CardCarousel chapters={chapters} />
     </View>
   )
 }

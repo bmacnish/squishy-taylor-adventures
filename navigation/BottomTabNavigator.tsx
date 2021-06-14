@@ -73,7 +73,7 @@ function HomeNavigator() {
         component={ChapterScreen}
         options={({ route }) => ({
           chapterId: route.params.chapterId,
-          title: route.params.title,
+          title: route.params.name,
         })}
       />
     </HomeStack.Navigator>
@@ -88,7 +88,7 @@ function SettingsNavigator() {
       <SettingsStack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ headerTitle: 'Settings' }}
+        options={{ title: 'Settings' }}
       />
     </SettingsStack.Navigator>
   )
