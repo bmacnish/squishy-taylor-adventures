@@ -11,7 +11,7 @@ import { HomeParamList } from '../types'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
   },
   titleContainer: {
     marginVertical: 24,

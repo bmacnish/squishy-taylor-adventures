@@ -23,7 +23,10 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        labelStyle: { fontFamily: 'Mako', letterSpacing: 0.3 },
+      }}
     >
       <BottomTab.Screen
         name="Home"
@@ -66,7 +69,7 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'The City-Wide Ghost Plague' }}
+        options={{ headerShown: false }}
       />
       <HomeStack.Screen
         name="ChapterScreen"
@@ -74,6 +77,8 @@ function HomeNavigator() {
         options={({ route }) => ({
           chapterId: route.params.chapterId,
           title: route.params.name,
+          headerBackTitle: '',
+          headerTitleStyle: { fontFamily: 'Mako' },
         })}
       />
     </HomeStack.Navigator>

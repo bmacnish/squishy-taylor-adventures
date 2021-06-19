@@ -13,9 +13,7 @@ import { H1Text, H3Text } from './StyledText'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   card: {
     height: 400,
