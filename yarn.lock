@@ -1158,6 +1158,16 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/bungee-shade@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/bungee-shade/-/bungee-shade-0.1.0.tgz#21a6f9ec0ec10c97700e273eda247f382475a247"
+  integrity sha512-j2oJ8m3z119Ct0LNkZsG/waZq5Z8wKPdLwK7wAiH87jMtU4grx7MK9PKIET3hA456ssJFrir4SGGv8QbQvoi1g==
+
+"@expo-google-fonts/mako@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/mako/-/mako-0.1.0.tgz#100ef1aac4bce03fe389e0a13795613024fa3c2d"
+  integrity sha512-u3aYZO5UXHnJ9RGh2tZO4a/1yzyuXDjgd/1z9MY3cxKLJpKJMw1Ok/qUPN1TITM8SDXzf0SquJfqfDh6B7LqMg==
+
 "@expo/config-plugins@1.0.32", "@expo/config-plugins@^1.0.18":
   version "1.0.32"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-1.0.32.tgz#abf4ab24a1cfd53e824fefdf15f727687491a856"
