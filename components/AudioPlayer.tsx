@@ -1,82 +1,115 @@
-import React, { useEffect, useState } from 'react'
-import { View, TouchableOpacity, StyleSheet } from 'react-native'
-import { Audio, AVPlaybackStatus } from 'expo-av'
-import { AntDesign } from '@expo/vector-icons'
-import { LabelText } from './StyledText'
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { Audio, AVPlaybackStatus } from "expo-av";
+import { AntDesign } from "@expo/vector-icons";
+import { LabelText } from "./StyledText";
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 12,
+    backgroundColor: "#eee",
+    paddingVertical: 8,
     borderRadius: 20,
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#eee',
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   button: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   text: {
     paddingTop: 4,
-    color: 'black',
+    color: "black",
   },
-})
+  labelText: {
+    paddingTop: 4,
+  },
+});
+
+const RECOMMENCE_BUFFER = 200;
+const SEEK_BUFFER = 15000;
 
 export default function AudioPlayer() {
-  const [sound, setSound] = useState<Audio.Sound | null>()
+  const [sound, setSound] = useState<Audio.Sound>();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const initializeAudio = async () => {
       const { sound } = await Audio.Sound.createAsync(
         require(`../assets/audio/chapterAudio/1.mp3`)
-      )
+      );
 
-      setSound(sound)
+      setSound(sound);
+    };
+    console.log("Running initialize audio");
+    initializeAudio();
+  }, []);
+
+  const playPauseAudio = async () => {
+    if (isPlaying) {
+      await sound?.pauseAsync();
+      setIsPlaying(false);
+      return;
     }
 
-    initializeAudio()
-  }, [])
+    const currentStatus = await sound?.getStatusAsync();
+    if (currentStatus?.isLoaded) {
+      sound?.setPositionAsync(currentStatus.positionMillis - RECOMMENCE_BUFFER);
+    }
+    await sound?.playAsync();
 
-  const playAudio = async () => {
-    await sound?.playAsync()
-  }
+    setIsPlaying(true);
+  };
 
-  const pauseAudio = async () => {
-    await sound?.pauseAsync()
-  }
+  const skip = async (direction: "forward" | "backward") => {
+    try {
+      const currentStatus = await sound?.getStatusAsync();
 
-  const restartAudio = async () => {
-    const { sound, status } = await Audio.Sound.createAsync(
-      require(`../assets/audio/chapterAudio/1.mp3`)
-    )
+      if (currentStatus?.isLoaded && direction === "forward") {
+        sound?.setPositionAsync(currentStatus.positionMillis + SEEK_BUFFER);
+      } else if (currentStatus?.isLoaded && direction === "backward") {
+        sound?.setPositionAsync(currentStatus.positionMillis - SEEK_BUFFER);
+      }
 
-    setSound(sound)
+      await sound?.playAsync();
 
-    await sound?.playAsync()
-  }
+      setIsPlaying(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound')
-          sound.unloadAsync()
+          sound.unloadAsync();
         }
-      : undefined
-  }, [sound])
+      : undefined;
+  }, [sound]);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={playAudio}>
-        <AntDesign name="playcircleo" size={24} color="black" />
-        <LabelText style={styles.text}>PLAY</LabelText>
+      <TouchableOpacity style={styles.button} onPress={() => skip("backward")}>
+        <AntDesign name="stepbackward" size={24} color="black" />
+        <LabelText style={styles.labelText}>BACK</LabelText>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={pauseAudio}>
-        <AntDesign name="pausecircleo" size={24} color="black" />
-        <LabelText style={styles.text}>PAUSE</LabelText>
+      <TouchableOpacity style={styles.button} onPress={playPauseAudio}>
+        {isPlaying ? (
+          <>
+            <AntDesign name="pause" size={24} color="black" />
+            <LabelText style={styles.labelText}>PAUSE</LabelText>
+          </>
+        ) : (
+          <>
+            <AntDesign name="caretright" size={24} color="black" />
+            <LabelText style={styles.labelText}>PLAY</LabelText>
+          </>
+        )}
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={restartAudio}>
-        <AntDesign name="sync" size={24} color="black" />
-        <LabelText style={styles.text}>RESTART</LabelText>
+
+      <TouchableOpacity style={styles.button} onPress={() => skip("forward")}>
+        <AntDesign name="stepforward" size={24} color="black" />
+        <LabelText style={styles.labelText}>FORWARD</LabelText>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
