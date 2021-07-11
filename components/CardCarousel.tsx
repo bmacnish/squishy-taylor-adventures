@@ -41,10 +41,17 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation()
 
+  const getBackgroundColor = (chapterId: number) => {
+    return cardBackgroundColors[chapterId]
+  }
+
   const onPress = (chapterId: number, chapterNumber: string) => {
     navigation.navigate('ChapterScreen', {
       chapterId: chapterId,
       name: chapterNumber,
+      headerStyle: {
+        backgroundColor: getBackgroundColor(chapterId),
+      },
     })
   }
 
@@ -61,7 +68,7 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
       <TouchableOpacity
         style={[
           styles.card,
-          { backgroundColor: cardBackgroundColors[chapterId] },
+          { backgroundColor: getBackgroundColor(chapterId) },
         ]}
         onPress={() => onPress(item.chapterId, item.chapterNumber)}
       >

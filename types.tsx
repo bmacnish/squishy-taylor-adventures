@@ -8,16 +8,11 @@ export type RootStackParamList = {
   NotFound: undefined
 }
 
-export type BottomTabParamList = {
-  Home: undefined
-  Settings: undefined
-}
-
 export type HomeParamList = {
   HomeScreen: undefined
-  ChapterScreen: { chapterId: number; name: string }
-}
-
-export type SettingsParamList = {
-  SettingsScreen: undefined
+  ChapterScreen: {
+    chapterId: number
+    name: string
+    headerStyle: { backgroundColor: string }
+  }
 }

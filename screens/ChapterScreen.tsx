@@ -7,10 +7,8 @@ import getChapterById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
 import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
-import {
-  cardBackgroundColors,
-  CardBackgroundColorsType,
-} from '../constants/Colors'
+import { cardBackgroundColors } from '../constants/Colors'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   titleContainer: {
-    marginVertical: 24,
+    marginBottom: 24,
   },
   title: {
     textAlign: 'center',
@@ -32,22 +30,17 @@ type ChapterScreenProps = {
 }
 
 export default function ChapterScreen({ route }: ChapterScreenProps) {
-  const { chapterId } = route.params as keyof CardBackgroundColorsType
+  const { chapterId } = route.params
 
   const chapter = getChapterById(chapterId)
 
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: cardBackgroundColors[chapterId] },
-      ]}
-    >
+    <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
         <H2Text style={styles.title}>{toTitleCase(chapter.title)}</H2Text>
       </View>
       <AudioPlayer />
       <DropDownText chapterId={chapterId} />
-    </View>
+    </SafeAreaView>
   )
 }
