@@ -7,6 +7,10 @@ import getChapterById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
 import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
+import {
+  cardBackgroundColors,
+  CardBackgroundColorsType,
+} from '../constants/Colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -28,12 +32,17 @@ type ChapterScreenProps = {
 }
 
 export default function ChapterScreen({ route }: ChapterScreenProps) {
-  const { chapterId } = route.params
+  const { chapterId } = route.params as keyof CardBackgroundColorsType
 
   const chapter = getChapterById(chapterId)
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: cardBackgroundColors[chapterId] },
+      ]}
+    >
       <View style={styles.titleContainer}>
         <H2Text style={styles.title}>{toTitleCase(chapter.title)}</H2Text>
       </View>

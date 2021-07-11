@@ -32,9 +32,7 @@ export default function BottomTabNavigator() {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="home" size={24} color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -42,7 +40,7 @@ export default function BottomTabNavigator() {
         component={SettingsNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <AntDesign name="setting" size={24} color={color} />
+            <TabBarIcon name="setting" color={color} />
           ),
         }}
       />

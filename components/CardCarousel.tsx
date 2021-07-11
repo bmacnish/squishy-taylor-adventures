@@ -1,14 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from 'react-native'
+import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { ChapterType } from '../constants/Chapters'
+import {
+  cardBackgroundColors,
+  CardBackgroundColorsType,
+} from '../constants/Colors'
 import { H1Text, H3Text } from './StyledText'
 
 const styles = StyleSheet.create({
@@ -17,19 +15,20 @@ const styles = StyleSheet.create({
   },
   card: {
     height: 400,
-    borderRadius: 20,
-    borderWidth: 2,
-    backgroundColor: 'white',
+    borderRadius: 24,
+    borderWidth: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  cardImage: {
+  cardContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 20,
-    flex: 1,
+    height: '94%',
+    width: '92%',
   },
-  imageContainer: {},
-  cardText: {
-    backgroundColor: 'white',
-    padding: 8,
-    borderRadius: 20,
+  chapterTitle: {
+    paddingTop: 16,
   },
 })
 
@@ -49,26 +48,28 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
     })
   }
 
-  const renderItem = ({ item }: { item: ChapterType; index: number }) => {
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: ChapterType
+    index: number
+  }) => {
+    const chapterId = item.chapterId as keyof CardBackgroundColorsType
+
     return (
       <TouchableOpacity
-        style={[styles.card]}
+        style={[
+          styles.card,
+          { backgroundColor: cardBackgroundColors[chapterId] },
+        ]}
         onPress={() => onPress(item.chapterId, item.chapterNumber)}
       >
-        <View style={styles.cardImage}>
-          <Image
-            style={{
-              resizeMode: 'cover',
-              borderRadius: 20,
-              width: '100%',
-              height: '100%',
-            }}
-            source={require('../assets/images/poppy.png')}
-          />
-        </View>
-        <View style={styles.cardText}>
-          <H1Text>{item.chapterNumber}</H1Text>
-          <H3Text>{item.title}</H3Text>
+        <View style={styles.cardContainer}>
+          <H1Text align="center">{item.chapterNumber}</H1Text>
+          <H3Text align="center" style={styles.chapterTitle}>
+            {item.title}
+          </H3Text>
         </View>
       </TouchableOpacity>
     )

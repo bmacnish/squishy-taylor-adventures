@@ -1,9 +1,10 @@
-import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
-import { StyleProp, Text, TextProps, TextStyle, StyleSheet } from 'react-native'
+import { StyleProp, TextProps, TextStyle, StyleSheet } from 'react-native'
+import { Text } from '../components/Themed'
 
 interface AppTextProps {
   color?: string
+  align?: 'left' | 'center' | 'right'
   children?: React.ReactNode
 }
 
@@ -43,13 +44,11 @@ const styles = StyleSheet.create({
 
 const createTextComponent =
   (styles: StyleProp<TextStyle>) => (props: AppTextProps & TextProps) => {
-    const { colors } = useTheme()
-
-    const { style: textStyle, ...textProps } = props
+    const { color, align, style: textStyle, ...textProps } = props
 
     return (
       <Text
-        style={[{ color: colors.text }, styles, textStyle]}
+        style={[styles, { color: color, textAlign: align }, textStyle]}
         {...textProps}
       />
     )

@@ -1,14 +1,17 @@
 import React from 'react'
-import { View, StyleSheet, SafeAreaView } from 'react-native'
+import { StyleSheet, SafeAreaView } from 'react-native'
+import { View } from '../components/Themed'
 import { chapters } from '../constants/Chapters'
 import CardCarousel from '../components/CardCarousel'
 import { Body1, H1Text, H2Text, H3Text } from '../components/StyledText'
+import { appColors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 16,
+    paddingHorizontal: 16,
     justifyContent: 'space-between',
+    backgroundColor: appColors.white,
   },
   title: {
     alignItems: 'center',
