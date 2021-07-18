@@ -9,6 +9,7 @@ import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
 import { appColors, cardBackgroundColors } from '../constants/Colors'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import NextPage from '../components/NextPage'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +22,9 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
+  },
+  nextPage: {
+    padding: 16,
   },
 })
 
@@ -38,10 +42,13 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <H2Text style={styles.title}>{toTitleCase(chapter.title)}</H2Text>
+        <H2Text color={appColors.white} style={styles.title}>
+          {toTitleCase(chapter.title)}
+        </H2Text>
       </View>
       <AudioPlayer />
       <DropDownText chapterId={chapterId} />
+      <NextPage chapterId={chapterId} />
     </SafeAreaView>
   )
 }
