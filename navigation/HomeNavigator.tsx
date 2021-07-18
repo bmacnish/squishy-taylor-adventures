@@ -20,7 +20,6 @@ export default function HomeNavigator() {
         name="ChapterScreen"
         component={ChapterScreen}
         options={({ route }) => ({
-          headerStyle: route.params.headerStyle,
           chapterId: route.params.chapterId,
           title: route.params.name,
           headerBackTitle: '',

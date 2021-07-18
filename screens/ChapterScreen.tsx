@@ -7,13 +7,14 @@ import getChapterById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
 import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
-import { cardBackgroundColors } from '../constants/Colors'
+import { appColors, cardBackgroundColors } from '../constants/Colors'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
+    backgroundColor: appColors.white,
   },
   titleContainer: {
     marginBottom: 24,

@@ -13,6 +13,5 @@ export type HomeParamList = {
   ChapterScreen: {
     chapterId: number
     name: string
-    headerStyle: { backgroundColor: string }
   }
 }

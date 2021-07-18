@@ -7,7 +7,7 @@ import {
   cardBackgroundColors,
   CardBackgroundColorsType,
 } from '../constants/Colors'
-import { H1Text, H3Text } from './StyledText'
+import { H1Text, H2Text, H3Text } from './StyledText'
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: '92%',
   },
   chapterTitle: {
-    paddingTop: 16,
+    paddingTop: 8,
   },
 })
 
@@ -49,9 +49,6 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
     navigation.navigate('ChapterScreen', {
       chapterId: chapterId,
       name: chapterNumber,
-      headerStyle: {
-        backgroundColor: getBackgroundColor(chapterId),
-      },
     })
   }
 
@@ -73,10 +70,10 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
         onPress={() => onPress(item.chapterId, item.chapterNumber)}
       >
         <View style={styles.cardContainer}>
-          <H1Text align="center">{item.chapterNumber}</H1Text>
-          <H3Text align="center" style={styles.chapterTitle}>
+          <H3Text align="center">{item.chapterNumber}</H3Text>
+          <H2Text align="center" style={styles.chapterTitle}>
             {item.title}
-          </H3Text>
+          </H2Text>
         </View>
       </TouchableOpacity>
     )
