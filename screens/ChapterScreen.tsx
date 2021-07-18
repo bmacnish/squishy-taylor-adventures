@@ -7,15 +7,20 @@ import getChapterById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
 import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
-import { appColors, cardBackgroundColors } from '../constants/Colors'
+import {
+  appColors,
+  cardBackgroundColors,
+  projectColors,
+} from '../constants/Colors'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import NextPage from '../components/NextPage'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    backgroundColor: appColors.white,
+    paddingVertical: 24,
   },
   titleContainer: {
     marginBottom: 24,
@@ -40,7 +45,11 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
   const chapter = getChapterById(chapterId)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient
+      style={styles.container}
+      colors={[projectColors.magenta, projectColors.darkblue]}
+      start={{ x: -0.1, y: 0 }}
+    >
       <View style={styles.titleContainer}>
         <H2Text color={appColors.white} style={styles.title}>
           {toTitleCase(chapter.title)}
@@ -49,6 +58,6 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
       <AudioPlayer />
       <DropDownText chapterId={chapterId} />
       <NextPage chapterId={chapterId} />
-    </SafeAreaView>
+    </LinearGradient>
   )
 }

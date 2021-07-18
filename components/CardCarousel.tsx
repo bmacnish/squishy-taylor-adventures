@@ -4,10 +4,13 @@ import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { ChapterType } from '../constants/Chapters'
 import {
+  appColors,
   cardBackgroundColors,
   CardBackgroundColorsType,
+  projectColors,
 } from '../constants/Colors'
 import { H1Text, H2Text, H3Text } from './StyledText'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +19,6 @@ const styles = StyleSheet.create({
   card: {
     height: 400,
     borderRadius: 24,
-    borderWidth: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -29,6 +31,9 @@ const styles = StyleSheet.create({
   },
   chapterTitle: {
     paddingTop: 8,
+  },
+  chapterNumber: {
+    fontWeight: '300',
   },
 })
 
@@ -62,20 +67,36 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
     const chapterId = item.chapterId as keyof CardBackgroundColorsType
 
     return (
-      <TouchableOpacity
-        style={[
-          styles.card,
-          { backgroundColor: getBackgroundColor(chapterId) },
+      <LinearGradient
+        colors={[
+          projectColors.orange,
+          projectColors.magenta,
+          projectColors.darkblue,
         ]}
-        onPress={() => onPress(item.chapterId, item.chapterNumber)}
+        style={[styles.card]}
+        start={{ x: 0.1, y: 0.2 }}
       >
-        <View style={styles.cardContainer}>
-          <H3Text align="center">{item.chapterNumber}</H3Text>
-          <H2Text align="center" style={styles.chapterTitle}>
-            {item.title}
-          </H2Text>
-        </View>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onPress(item.chapterId, item.chapterNumber)}
+        >
+          <View style={styles.cardContainer}>
+            <H3Text
+              style={styles.chapterNumber}
+              color={appColors.white}
+              align="center"
+            >
+              {item.chapterNumber}
+            </H3Text>
+            <H2Text
+              color={appColors.white}
+              align="center"
+              style={styles.chapterTitle}
+            >
+              {item.title}
+            </H2Text>
+          </View>
+        </TouchableOpacity>
+      </LinearGradient>
     )
   }
 

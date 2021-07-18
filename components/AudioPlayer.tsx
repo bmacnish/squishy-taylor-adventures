@@ -3,13 +3,18 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { Audio, AVPlaybackStatus } from 'expo-av'
 import { AntDesign } from '@expo/vector-icons'
 import { LabelText } from './StyledText'
+import { appColors, projectColors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#bbb',
+    backgroundColor: projectColors.orange,
     paddingTop: 16,
     paddingBottom: 12,
     borderRadius: 20,
+    shadowColor: appColors.black,
+    shadowOffset: { width: 0.5, height: 0.5 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -19,7 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingTop: 4,
-    color: 'black',
+    color: appColors.white,
   },
   labelText: {
     paddingTop: 4,
@@ -90,26 +95,34 @@ export default function AudioPlayer() {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={() => skip('backward')}>
-        <AntDesign name="stepbackward" size={24} color="black" />
-        <LabelText style={styles.labelText}>BACK</LabelText>
+        <AntDesign name="stepbackward" size={24} color={appColors.white} />
+        <LabelText color={appColors.white} style={styles.labelText}>
+          BACK
+        </LabelText>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={playPauseAudio}>
         {isPlaying ? (
           <>
-            <AntDesign name="pause" size={24} color="black" />
-            <LabelText style={styles.labelText}>PAUSE</LabelText>
+            <AntDesign name="pause" size={24} color={appColors.white} />
+            <LabelText color={appColors.white} style={styles.labelText}>
+              PAUSE
+            </LabelText>
           </>
         ) : (
           <>
-            <AntDesign name="caretright" size={24} color="black" />
-            <LabelText style={styles.labelText}>PLAY</LabelText>
+            <AntDesign name="caretright" size={24} color={appColors.white} />
+            <LabelText color={appColors.white} style={styles.labelText}>
+              PLAY
+            </LabelText>
           </>
         )}
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => skip('forward')}>
-        <AntDesign name="stepforward" size={24} color="black" />
-        <LabelText style={styles.labelText}>FORWARD</LabelText>
+        <AntDesign name="stepforward" size={24} color={appColors.white} />
+        <LabelText color={appColors.white} style={styles.labelText}>
+          FORWARD
+        </LabelText>
       </TouchableOpacity>
     </View>
   )

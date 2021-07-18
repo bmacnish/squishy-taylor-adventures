@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons'
 import { Body1 } from '../components/StyledText'
 import getChapterById from '../helpers/getChapterDataById'
 import { useTheme } from '@react-navigation/native'
+import { appColors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
   textToggleBarContainer: {
@@ -37,18 +38,18 @@ export default function DropDownText({ chapterId }: { chapterId: number }) {
       <View
         style={[styles.textToggleBar, { borderBottomColor: colors.border }]}
       >
-        <Body1>READ ALONG</Body1>
+        <Body1 color={appColors.white}>READ ALONG</Body1>
         <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
           {!toggleText ? (
-            <AntDesign name="down-square-o" size={24} color={colors.text} />
+            <AntDesign name="down-square-o" size={24} color={appColors.white} />
           ) : (
-            <AntDesign name="closesquareo" size={24} color={colors.text} />
+            <AntDesign name="closesquareo" size={24} color={appColors.white} />
           )}
         </TouchableOpacity>
       </View>
       {toggleText && (
         <ScrollView style={styles.textContainer}>
-          <Body1>{chapter.text}</Body1>
+          <Body1 color={appColors.white}>{chapter.text}</Body1>
         </ScrollView>
       )}
     </View>

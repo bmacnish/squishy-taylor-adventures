@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { chapters } from '../constants/Chapters'
-import { projectColors } from '../constants/Colors'
+import { appColors, projectColors } from '../constants/Colors'
 import { LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignSelf: 'flex-end',
     marginTop: 16,
+    shadowColor: appColors.black,
+    shadowOffset: { width: 0.5, height: 0.5 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
   },
 })
 

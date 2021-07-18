@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
+import { appColors, projectColors } from '../constants/Colors'
 import ChapterScreen from '../screens/ChapterScreen'
 import HomeScreen from '../screens/HomeScreen'
 import { HomeParamList } from '../types'
@@ -23,7 +24,8 @@ export default function HomeNavigator() {
           chapterId: route.params.chapterId,
           title: route.params.name,
           headerBackTitle: '',
-          headerTitleStyle: { fontFamily: 'Mako' },
+          headerBackTitleVisible: false,
+          headerTintColor: projectColors.orange,
         })}
       />
     </HomeStack.Navigator>
