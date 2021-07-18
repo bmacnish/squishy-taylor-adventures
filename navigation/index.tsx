@@ -11,6 +11,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import { ColorSchemeName } from 'react-native'
+import { appColors } from '../constants/Colors'
 
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { RootStackParamList } from '../types'
@@ -22,10 +23,19 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName
 }) {
+  const customDarkTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: appColors.black,
+      card: appColors.black,
+      border: appColors.black,
+    },
+  }
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      theme={colorScheme === 'dark' ? customDarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>

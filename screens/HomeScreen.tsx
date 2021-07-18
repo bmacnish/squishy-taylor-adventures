@@ -5,13 +5,13 @@ import { chapters } from '../constants/Chapters'
 import CardCarousel from '../components/CardCarousel'
 import { Body1, H1Text, H3Text } from '../components/StyledText'
 import { appColors, projectColors } from '../constants/Colors'
+import { useColorScheme } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: appColors.white,
   },
   title: {
     alignItems: 'center',
@@ -23,8 +23,18 @@ const styles = StyleSheet.create({
 })
 
 export default function HomeScreen() {
+  let colorScheme = useColorScheme()
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            colorScheme === 'light' ? appColors.white : appColors.black,
+        },
+      ]}
+    >
       <View style={styles.title}>
         <H1Text color={projectColors.orange} style={{ textAlign: 'center' }}>
           Squishy Taylor

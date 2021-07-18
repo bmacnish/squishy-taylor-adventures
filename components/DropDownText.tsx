@@ -36,7 +36,7 @@ export default function DropDownText({ chapterId }: { chapterId: number }) {
   return (
     <View style={styles.textToggleBarContainer}>
       <View
-        style={[styles.textToggleBar, { borderBottomColor: colors.border }]}
+        style={[styles.textToggleBar, { borderBottomColor: appColors.white }]}
       >
         <Body1 color={appColors.white}>READ ALONG</Body1>
         <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
