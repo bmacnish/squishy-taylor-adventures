@@ -11,7 +11,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import { ColorSchemeName } from 'react-native'
-import { appColors } from '../constants/Colors'
+import { colors } from '../constants/Colors'
 
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { RootStackParamList } from '../types'
@@ -27,9 +27,9 @@ export default function Navigation({
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: appColors.black,
-      card: appColors.black,
-      border: appColors.black,
+      background: colors.dark,
+      card: colors.dark,
+      border: colors.dark,
     },
   }
   return (

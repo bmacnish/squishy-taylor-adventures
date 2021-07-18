@@ -7,12 +7,7 @@ import getChapterById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
 import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
-import {
-  appColors,
-  cardBackgroundColors,
-  projectColors,
-} from '../constants/Colors'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { colors } from '../constants/Colors'
 import NextPage from '../components/NextPage'
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -47,11 +42,11 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
   return (
     <LinearGradient
       style={styles.container}
-      colors={[projectColors.magenta, projectColors.darkblue]}
+      colors={[colors.magenta, colors.darkblue]}
       start={{ x: -0.1, y: 0 }}
     >
       <View style={styles.titleContainer}>
-        <H2Text color={appColors.white} style={styles.title}>
+        <H2Text color={colors.light} style={styles.title}>
           {toTitleCase(chapter.title)}
         </H2Text>
       </View>

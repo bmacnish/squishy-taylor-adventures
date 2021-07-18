@@ -1,17 +1,17 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { chapters } from '../constants/Chapters'
-import { appColors, projectColors } from '../constants/Colors'
+import { colors } from '../constants/Colors'
 import { LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: projectColors.orange,
+    backgroundColor: colors.orange,
     padding: 12,
     borderRadius: 20,
     alignSelf: 'flex-end',
     marginTop: 16,
-    shadowColor: appColors.black,
+    shadowColor: colors.dark,
     shadowOffset: { width: 0.5, height: 0.5 },
     shadowOpacity: 0.8,
     shadowRadius: 4,

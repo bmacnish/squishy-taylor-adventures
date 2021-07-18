@@ -3,13 +3,8 @@ import React from 'react'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { ChapterType } from '../constants/Chapters'
-import {
-  appColors,
-  cardBackgroundColors,
-  CardBackgroundColorsType,
-  projectColors,
-} from '../constants/Colors'
-import { H1Text, H2Text, H3Text } from './StyledText'
+import { colors } from '../constants/Colors'
+import { H2Text, H3Text } from './StyledText'
 import { LinearGradient } from 'expo-linear-gradient'
 
 const styles = StyleSheet.create({
@@ -46,10 +41,6 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation()
 
-  const getBackgroundColor = (chapterId: number) => {
-    return cardBackgroundColors[chapterId]
-  }
-
   const onPress = (chapterId: number, chapterNumber: string) => {
     navigation.navigate('ChapterScreen', {
       chapterId: chapterId,
@@ -57,22 +48,10 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
     })
   }
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: ChapterType
-    index: number
-  }) => {
-    const chapterId = item.chapterId as keyof CardBackgroundColorsType
-
+  const renderItem = ({ item }: { item: ChapterType }) => {
     return (
       <LinearGradient
-        colors={[
-          projectColors.orange,
-          projectColors.magenta,
-          projectColors.darkblue,
-        ]}
+        colors={[colors.orange, colors.magenta, colors.darkblue]}
         style={[styles.card]}
         start={{ x: 0.1, y: 0.2 }}
       >
@@ -82,13 +61,13 @@ export default function CardCarousel({ chapters }: CardCarouselProps) {
           <View style={styles.cardContainer}>
             <H3Text
               style={styles.chapterNumber}
-              color={appColors.white}
+              color={colors.light}
               align="center"
             >
               {item.chapterNumber}
             </H3Text>
             <H2Text
-              color={appColors.white}
+              color={colors.light}
               align="center"
               style={styles.chapterTitle}
             >

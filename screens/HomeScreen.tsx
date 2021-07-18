@@ -4,7 +4,7 @@ import { View } from '../components/Themed'
 import { chapters } from '../constants/Chapters'
 import CardCarousel from '../components/CardCarousel'
 import { Body1, H1Text, H3Text } from '../components/StyledText'
-import { appColors, projectColors } from '../constants/Colors'
+import { colors } from '../constants/Colors'
 import { useColorScheme } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -30,17 +30,16 @@ export default function HomeScreen() {
       style={[
         styles.container,
         {
-          backgroundColor:
-            colorScheme === 'light' ? appColors.white : appColors.black,
+          backgroundColor: colorScheme === 'light' ? colors.light : colors.dark,
         },
       ]}
     >
       <View style={styles.title}>
-        <H1Text color={projectColors.orange} style={{ textAlign: 'center' }}>
+        <H1Text color={colors.orange} style={{ textAlign: 'center' }}>
           Squishy Taylor
         </H1Text>
-        <Body1 color={projectColors.orange}>and the</Body1>
-        <H3Text style={styles.subtitle} color={projectColors.orange}>
+        <Body1 color={colors.orange}>and the</Body1>
+        <H3Text style={styles.subtitle} color={colors.orange}>
           City-wide Ghost Plague
         </H3Text>
       </View>
