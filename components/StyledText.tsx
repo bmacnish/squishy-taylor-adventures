@@ -12,30 +12,26 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 40,
     lineHeight: 44,
-    fontFamily: 'BungeeShade',
+    fontWeight: '700',
   },
   h2: {
     fontSize: 34,
     lineHeight: 38,
-    fontFamily: 'Mako',
   },
   h3: {
     fontSize: 24,
     lineHeight: 28,
-    fontFamily: 'Mako',
   },
   h4: {
     fontSize: 18,
     lineHeight: 22,
-    fontFamily: 'Mako',
   },
   body1: {
     fontSize: 18,
     lineHeight: 24,
-    fontFamily: 'Mako',
   },
   label: {
-    fontSize: 10,
+    fontSize: 12,
     letterSpacing: 0.5,
     lineHeight: 14,
     textTransform: 'uppercase',
