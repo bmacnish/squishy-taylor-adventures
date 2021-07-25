@@ -141,7 +141,6 @@ export default function AudioPlayer() {
   )
 
   const onSlidingStart = useCallback(() => {
-    console.log('onSlidingStart')
     setIsSliding(true)
   }, [])
 
@@ -150,13 +149,7 @@ export default function AudioPlayer() {
       const currentStatus = await sound?.getStatusAsync()
 
       if (currentStatus?.isLoaded && currentStatus.durationMillis) {
-        console.log('value', value)
-        console.log(
-          'currentStatus.durationMillis',
-          currentStatus.durationMillis
-        )
         const position = value * currentStatus.durationMillis
-        console.log(position)
         await sound?.setPositionAsync(position)
         setIsSliding(false)
         setSliderPosition(value)
