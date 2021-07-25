@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
-import { ChapterType } from '../constants/Chapters'
 import { colors } from '../constants/Colors'
 import { H2Text, H3Text } from './StyledText'
 import { LinearGradient } from 'expo-linear-gradient'
+import { ChapterType } from '../hooks/useChapterData'
 
 const styles = StyleSheet.create({
   container: {

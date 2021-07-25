@@ -1,5 +1,7 @@
-import { chapters } from '../constants/Chapters'
+import useChapterData from '../hooks/useChapterData'
 
 export default (chapterId: number) => {
-  return chapters.filter((chapter) => chapter.chapterId === chapterId)[0]
+  const chapters = useChapterData()
+
+  return chapters?.filter((chapter) => chapter.chapterId === chapterId)[0]
 }

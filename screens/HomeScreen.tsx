@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
 import { View } from '../components/Themed'
-import { chapters } from '../constants/Chapters'
 import CardCarousel from '../components/CardCarousel'
 import { Body1, H1Text, H3Text } from '../components/StyledText'
 import { colors } from '../constants/Colors'
 import { useColorScheme } from 'react-native'
+import useChapterData from '../hooks/useChapterData'
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
 export default function HomeScreen() {
   let colorScheme = useColorScheme()
+  const chapters = useChapterData()
 
   return (
     <SafeAreaView
@@ -43,9 +44,7 @@ export default function HomeScreen() {
           City-wide Ghost Plague
         </H3Text>
       </View>
-      <View>
-        <CardCarousel chapters={chapters} />
-      </View>
+      <View>{chapters && <CardCarousel chapters={chapters} />}</View>
     </SafeAreaView>
   )
 }

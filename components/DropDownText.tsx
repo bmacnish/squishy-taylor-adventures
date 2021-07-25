@@ -45,7 +45,7 @@ export default function DropDownText({ chapterId }: { chapterId: number }) {
       </View>
       {toggleText && (
         <ScrollView style={styles.textContainer}>
-          <Body1 color={colors.light}>{chapter.text}</Body1>
+          {chapter && <Body1 color={colors.light}>{chapter.text}</Body1>}
         </ScrollView>
       )}
     </View>

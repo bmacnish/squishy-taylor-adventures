@@ -45,14 +45,18 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
       colors={[colors.magenta, colors.darkblue]}
       start={{ x: -0.1, y: 0 }}
     >
-      <View style={styles.titleContainer}>
-        <H2Text color={colors.light} style={styles.title}>
-          {toTitleCase(chapter.title)}
-        </H2Text>
-      </View>
-      <AudioPlayer />
-      <DropDownText chapterId={chapterId} />
-      <NextPage chapterId={chapterId} />
+      {chapter && (
+        <>
+          <View style={styles.titleContainer}>
+            <H2Text color={colors.light} style={styles.title}>
+              {toTitleCase(chapter.title)}
+            </H2Text>
+          </View>
+          <AudioPlayer />
+          <DropDownText chapterId={chapterId} />
+          {chapter.nextPage && <NextPage chapterId={chapterId} />}
+        </>
+      )}
     </LinearGradient>
   )
 }

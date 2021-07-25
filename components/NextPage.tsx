@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { chapters } from '../constants/Chapters'
 import { colors } from '../constants/Colors'
+import useChapterData from '../hooks/useChapterData'
 import { LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
@@ -23,10 +23,17 @@ type NextPageProps = {
 }
 
 export default function NextPage({ chapterId }: NextPageProps) {
-  const nextPage = chapters[chapterId].nextPage
-  return (
-    <View style={styles.container}>
-      <LabelText>{`Go to page ${nextPage}`}</LabelText>
-    </View>
-  )
+  const chapters = useChapterData()
+
+  if (chapters != undefined) {
+    const nextPage = chapters[chapterId].nextPage
+
+    return (
+      <View style={styles.container}>
+        <LabelText>{`Go to page ${nextPage}`}</LabelText>
+      </View>
+    )
+  } else {
+    return null
+  }
 }
