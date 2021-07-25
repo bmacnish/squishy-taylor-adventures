@@ -3,13 +3,13 @@ import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import useCachedResources from './hooks/useCachedResources'
 import useColorScheme from './hooks/useColorScheme'
-import useFirebaseRealtimeDatabase from './hooks/useFirebaseRealtimeDatabase'
+import useFirebase from './hooks/useFirebase'
 import Navigation from './navigation'
 
 export default function App() {
   const isLoadingComplete = useCachedResources()
   const colorScheme = useColorScheme()
-  const firebaseInitialized = useFirebaseRealtimeDatabase()
+  const firebaseInitialized = useFirebase()
 
   if (!isLoadingComplete && firebaseInitialized) {
     return null

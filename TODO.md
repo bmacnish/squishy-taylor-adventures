@@ -6,6 +6,11 @@
 ## UI
 - [x] Add design for the Chapter Screen
 
+## Other
+- [ ] Error handling
+- [ ] Android UI fix ups
+
+
 ## Project admin
-- [ ] Add a github repo for the project
+- [x] Add a github repo for the project
 - [ ] Add a README for the project
