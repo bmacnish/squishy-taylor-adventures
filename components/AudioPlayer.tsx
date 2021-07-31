@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { Audio, AVPlaybackStatus } from "expo-av";
-import { AntDesign } from "@expo/vector-icons";
-import { LabelText } from "./StyledText";
-import { colors } from "../constants/Colors";
-import Slider from "@react-native-community/slider";
-import { useCallback } from "react";
-import firebase from "firebase/app";
+import React, { useEffect, useState } from 'react'
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native'
+import { Audio, AVPlaybackStatus } from 'expo-av'
+import { AntDesign } from '@expo/vector-icons'
+import { LabelText } from './StyledText'
+import { colors } from '../constants/Colors'
+import Slider from '@react-native-community/slider'
+import { useCallback } from 'react'
+import firebase from 'firebase/app'
 
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +33,10 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     alignItems: 'center',
   },
+  slider: {
+    width: '90%',
+    height: 40,
+  },
   button: {
     alignItems: 'center',
   },
@@ -42,15 +51,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
     justifyContent: 'space-between',
-    width: '80%',
+    width: '84%',
   },
 })
 
 const RECOMMENCE_BUFFER = 200
 const SEEK_BUFFER = 15000
 
-export default function AudioPlayer() {
+interface AudioPlayerProps {
+  chapterId: number
+}
+
+export default function AudioPlayer({
+  chapterId,
+}: AudioPlayerProps): JSX.Element {
   const [sound, setSound] = useState<Audio.Sound>()
+  const [isLoading, setIsLoading] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
   const [sliderPosition, setSliderPosition] = useState(0)
   const [isSliding, setIsSliding] = useState(false)
@@ -58,8 +74,8 @@ export default function AudioPlayer() {
   const [currentDuration, setCurrentDuration] = useState(0)
 
   function millisToMinutesAndSeconds(millis: number) {
-    var minutes = Math.floor(millis / 60000)
-    var seconds = Math.floor((millis % 60000) / 1000)
+    const minutes = Math.floor(millis / 60000)
+    const seconds = Math.floor((millis % 60000) / 1000)
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds.toFixed(0)
   }
 
@@ -79,16 +95,34 @@ export default function AudioPlayer() {
     [isSliding]
   )
 
+  const getDownloadUrl = useCallback(async () => {
+    const defaultStorage = await firebase.storage()
+    const chapterIdString = chapterId.toString()
+    const storageRef = await defaultStorage.ref(`/${chapterIdString}.mp3`)
+    const url = await storageRef.getDownloadURL()
+
+    return url
+  }, [chapterId])
+
   useEffect(() => {
     const initializeAudio = async () => {
-      const { sound } = await Audio.Sound.createAsync(
-        require(`../assets/audio/chapterAudio/1.mp3`)
-      )
+      try {
+        const uri = await getDownloadUrl()
+        const source = {
+          uri,
+        }
 
-      setSound(sound)
+        const { sound } = await Audio.Sound.createAsync(source)
+
+        setSound(sound)
+        setIsLoading(false)
+      } catch (error) {
+        // TODO: Handle error
+        console.log(error)
+      }
     }
     initializeAudio()
-  }, [])
+  }, [getDownloadUrl])
 
   useEffect(() => {
     if (sound) {
@@ -171,45 +205,52 @@ export default function AudioPlayer() {
             BACK
           </LabelText>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={playPauseAudio}>
-          {isPlaying ? (
-            <>
-              <AntDesign name="pause" size={24} color={colors.light} />
-              <LabelText color={colors.light} style={styles.labelText}>
-                PAUSE
-              </LabelText>
-            </>
-          ) : (
-            <>
-              <AntDesign name="caretright" size={24} color={colors.light} />
-              <LabelText color={colors.light} style={styles.labelText}>
-                PLAY
-              </LabelText>
-            </>
-          )}
-        </TouchableOpacity>
-
+        {isLoading ? (
+          <ActivityIndicator color={colors.light} />
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={playPauseAudio}>
+            {isPlaying ? (
+              <>
+                <AntDesign name="pause" size={24} color={colors.light} />
+                <LabelText color={colors.light} style={styles.labelText}>
+                  PAUSE
+                </LabelText>
+              </>
+            ) : (
+              <>
+                <AntDesign name="caretright" size={24} color={colors.light} />
+                <LabelText color={colors.light} style={styles.labelText}>
+                  PLAY
+                </LabelText>
+              </>
+            )}
+          </TouchableOpacity>
+        )}
         <TouchableOpacity style={styles.button} onPress={() => skip('forward')}>
           <AntDesign name="stepforward" size={24} color={colors.light} />
           <LabelText color={colors.light} style={styles.labelText}>
-            FORWARD
+            SKIP
           </LabelText>
         </TouchableOpacity>
       </View>
       <View style={styles.sliderContainer}>
         <Slider
-          style={{ width: '90%', height: 40 }}
+          style={styles.slider}
           minimumValue={0}
           maximumValue={1}
-          minimumTrackTintColor="#FFFFFF"
-          maximumTrackTintColor="#000000"
+          minimumTrackTintColor={colors.light}
+          maximumTrackTintColor={colors.darkblue}
           value={sliderPosition}
           onSlidingStart={onSlidingStart}
           onSlidingComplete={onSlidingComplete}
         />
         <View style={styles.time}>
-          <LabelText>{millisToMinutesAndSeconds(currentDuration)}</LabelText>
-          <LabelText>{millisToMinutesAndSeconds(duration)}</LabelText>
+          <LabelText color={colors.dark}>
+            {millisToMinutesAndSeconds(currentDuration)}
+          </LabelText>
+          <LabelText color={colors.dark}>
+            {millisToMinutesAndSeconds(duration)}
+          </LabelText>
         </View>
       </View>
     </View>

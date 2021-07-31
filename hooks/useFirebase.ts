@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import 'firebase/storage'
 import firebaseConfig from '../firebaseConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 

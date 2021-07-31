@@ -52,7 +52,7 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
               {toTitleCase(chapter.title)}
             </H2Text>
           </View>
-          <AudioPlayer />
+          <AudioPlayer chapterId={chapterId} />
           <DropDownText chapterId={chapterId} />
           {chapter.nextPage && <NextPage chapterId={chapterId} />}
         </>
