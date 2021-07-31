@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { View, TouchableOpacity, StyleSheet } from 'react-native'
-import { Audio, AVPlaybackStatus } from 'expo-av'
-import { AntDesign } from '@expo/vector-icons'
-import { LabelText } from './StyledText'
-import { colors } from '../constants/Colors'
-import Slider from '@react-native-community/slider'
-import { useCallback } from 'react'
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { Audio, AVPlaybackStatus } from "expo-av";
+import { AntDesign } from "@expo/vector-icons";
+import { LabelText } from "./StyledText";
+import { colors } from "../constants/Colors";
+import Slider from "@react-native-community/slider";
+import { useCallback } from "react";
+import firebase from "firebase/app";
 
 const styles = StyleSheet.create({
   container: {
