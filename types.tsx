@@ -9,7 +9,7 @@ export type RootStackParamList = {
 }
 
 export type HomeParamList = {
-  HomeScreen: undefined
+  ProjectScreen: undefined
   ChapterScreen: {
     chapterId: number
     name: string

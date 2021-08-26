@@ -2,19 +2,17 @@ import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import { colors } from '../constants/Colors'
 import ChapterScreen from '../screens/ChapterScreen'
-import HomeScreen from '../screens/HomeScreen'
+import ProjectScreen from '../screens/ProjectScreen'
 import { HomeParamList } from '../types'
 
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const HomeStack = createStackNavigator<HomeParamList>()
 
 export default function HomeNavigator() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="ProjectScreen"
+        component={ProjectScreen}
         options={{ headerShown: false }}
       />
       <HomeStack.Screen

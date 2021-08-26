@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function HomeScreen() {
+export default function ProjectScreen() {
   const colorScheme = useColorScheme()
   const chapters = useChapterData()
 
