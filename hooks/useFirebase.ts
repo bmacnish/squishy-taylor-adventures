@@ -16,7 +16,7 @@ const initFirebase = () => {
 
 async function storeData(value: string) {
   try {
-    await AsyncStorage.setItem('@chapters', value)
+    await AsyncStorage.setItem('@projects', value)
   } catch (error) {
     // TODO: Handle error
     console.log(error)
@@ -25,10 +25,10 @@ async function storeData(value: string) {
 
 async function loadChapters() {
   const ref = await firebase.database().ref('/')
-  const chapterData = await (await ref.once('value')).val()
-  const chapterDataString = JSON.stringify(chapterData)
+  const projectData = await (await ref.once('value')).val()
+  const projectDataString = JSON.stringify(projectData)
 
-  storeData(chapterDataString)
+  storeData(projectDataString)
 }
 
 async function createOrLoginAnonymousUser() {

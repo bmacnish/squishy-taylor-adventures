@@ -1,7 +1,12 @@
-import useChapterData from '../hooks/useChapterData'
+import getProjectDataById from './getProjectDataById'
 
-export default (chapterId: number) => {
-  const chapters = useChapterData()
+export default (projectId: string, chapterId: number) => {
+  const project = getProjectDataById(projectId)
+  const chapters = project.chapters
 
-  return chapters?.filter((chapter) => chapter.chapterId === chapterId)[0]
+  const result = chapters?.filter(
+    (chapters) => chapters.chapterId === chapterId
+  )[0]
+
+  return result
 }

@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1 } from '../components/StyledText'
 import getChapterById from '../helpers/getChapterDataById'
 import { colors } from '../constants/Colors'
+import { ChapterType } from '../hooks/useProjectData'
+import getProjectDataById from '../helpers/getProjectDataById'
 
 const styles = StyleSheet.create({
   textToggleBarContainer: {
@@ -25,10 +27,31 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function DropDownText({ chapterId }: { chapterId: number }) {
+export default function DropDownText({
+  projectId,
+  chapterId,
+}: {
+  projectId: string
+  chapterId: number
+}) {
   const [toggleText, setToggleText] = useState(false)
+  const [chapter, setChapter] = useState<ChapterType>()
+  const project = getProjectDataById(projectId)
 
-  const chapter = getChapterById(chapterId)
+  const getChapter = useCallback(() => {
+    if (project != undefined) {
+      const chapters = project.chapters
+      const chapter = chapters?.filter(
+        (chapters) => chapters.chapterId === chapterId
+      )[0]
+
+      setChapter(chapter)
+    }
+  }, [chapterId, project])
+
+  useEffect(() => {
+    getChapter()
+  }, [getChapter])
 
   return (
     <View style={styles.textToggleBarContainer}>

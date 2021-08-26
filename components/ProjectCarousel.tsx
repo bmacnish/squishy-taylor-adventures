@@ -3,9 +3,9 @@ import React from 'react'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { colors } from '../constants/Colors'
-import { H2Text, H3Text } from './StyledText'
+import { H2Text } from './StyledText'
 import { LinearGradient } from 'expo-linear-gradient'
-import { ChapterType } from '../hooks/useProjectData'
+import { ProjectType } from '../hooks/useProjectData'
 
 const styles = StyleSheet.create({
   container: {
@@ -17,74 +17,47 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  cardContainer: {
+  projectCardContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
     height: '94%',
     width: '92%',
   },
-  chapterTitle: {
+  projectTitle: {
     paddingTop: 8,
-  },
-  chapterNumber: {
-    fontWeight: '300',
   },
 })
 
-interface CardCarouselProps {
-  projectId: string
-  chapters: ChapterType[]
+interface ProjectCarouselProps {
+  data: Array<ProjectType>
 }
 
-export default function CardCarousel({
-  projectId,
-  chapters,
-}: CardCarouselProps) {
+export default function ProjectCarousel({ data }: ProjectCarouselProps) {
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation()
 
-  const onPress = (
-    projectId: string,
-    chapterId: number,
-    chapterNumber: string
-  ) => {
-    navigation.navigate('ChapterScreen', {
+  const onPress = (projectId: string, projectTitle: string) => {
+    navigation.navigate('ProjectScreen', {
       projectId: projectId,
-      chapterId: chapterId,
-      name: chapterNumber,
+      name: projectTitle,
     })
   }
 
-  const renderItem = ({ item }: { item: ChapterType }) => {
+  const renderItem = ({ item }: { item: ProjectType }) => {
     return (
       <LinearGradient
         colors={[colors.orange, colors.magenta, colors.darkblue]}
         style={[styles.card]}
         start={{ x: 0.1, y: 0.2 }}
       >
-        <TouchableOpacity
-          onPress={() =>
-            onPress(
-              projectId,
-              item.chapterId,
-              item.chapterNumber ? item.chapterNumber : ''
-            )
-          }
-        >
-          <View style={styles.cardContainer}>
-            <H3Text
-              style={styles.chapterNumber}
-              color={colors.light}
-              align="center"
-            >
-              {item.chapterNumber}
-            </H3Text>
+        <TouchableOpacity onPress={() => onPress(item.projectId, item.title)}>
+          <View style={styles.projectCardContainer}>
             <H2Text
               color={colors.light}
               align="center"
-              style={styles.chapterTitle}
+              style={styles.projectTitle}
             >
               {item.title}
             </H2Text>
@@ -98,11 +71,10 @@ export default function CardCarousel({
     <View style={styles.container}>
       <Carousel
         containerCustomStyle={{ flexGrow: 0 }}
-        data={chapters}
+        data={data}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
-        removeClippedSubviews={false}
       />
     </View>
   )
