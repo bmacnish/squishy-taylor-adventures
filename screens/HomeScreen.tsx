@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
 import { View } from '../components/Themed'
 import CardCarousel from '../components/CardCarousel'
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 })
 
 export default function HomeScreen() {
-  let colorScheme = useColorScheme()
+  const colorScheme = useColorScheme()
   const chapters = useChapterData()
 
   return (

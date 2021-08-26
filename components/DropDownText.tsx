@@ -3,7 +3,6 @@ import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1 } from '../components/StyledText'
 import getChapterById from '../helpers/getChapterDataById'
-import { useTheme } from '@react-navigation/native'
 import { colors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
