@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { H2Text } from '../components/StyledText'
 import AudioPlayer from '../components/AudioPlayer'
@@ -10,9 +10,6 @@ import { HomeParamList } from '../types'
 import { colors } from '../constants/Colors'
 import NextPage from '../components/NextPage'
 import { LinearGradient } from 'expo-linear-gradient'
-import getProjectDataById from '../helpers/getProjectDataById'
-import { useEffect } from 'react'
-import { ChapterType, ProjectType } from '../hooks/useProjectData'
 
 const styles = StyleSheet.create({
   container: {
@@ -39,25 +36,8 @@ interface ChapterScreenProps {
 
 export default function ChapterScreen({ route }: ChapterScreenProps) {
   const { projectId, chapterId } = route.params
-  const [chapter, setChapter] = useState<ChapterType>()
-  const project = getProjectDataById(projectId)
+  const chapter = getChapterDataById(projectId, chapterId)
 
-  const getChapter = useCallback(() => {
-    if (project != undefined) {
-      const chapters = project.chapters
-      const chapter = chapters?.filter(
-        (chapters) => chapters.chapterId === chapterId
-      )[0]
-
-      setChapter(chapter)
-    }
-  }, [chapterId, project])
-
-  useEffect(() => {
-    getChapter()
-  }, [getChapter])
-
-  console.log(chapter)
   return (
     <LinearGradient
       style={styles.container}

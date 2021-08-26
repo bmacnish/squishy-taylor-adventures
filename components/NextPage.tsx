@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { colors } from '../constants/Colors'
 import getChapterDataById from '../helpers/getChapterDataById'
-import getProjectDataById from '../helpers/getProjectDataById'
-import { ChapterType } from '../hooks/useProjectData'
 import { LabelText } from './StyledText'
 
 const styles = StyleSheet.create({
@@ -26,23 +24,7 @@ type NextPageProps = {
 }
 
 export default function NextPage({ projectId, chapterId }: NextPageProps) {
-  const [chapter, setChapter] = useState<ChapterType>()
-  const project = getProjectDataById(projectId)
-
-  const getChapter = useCallback(() => {
-    if (project != undefined) {
-      const chapters = project.chapters
-      const chapter = chapters?.filter(
-        (chapters) => chapters.chapterId === chapterId
-      )[0]
-
-      setChapter(chapter)
-    }
-  }, [chapterId, project])
-
-  useEffect(() => {
-    getChapter()
-  }, [getChapter])
+  const chapter = getChapterDataById(projectId, chapterId)
 
   if (chapter?.nextPage) {
     const nextPage = chapter?.nextPage
