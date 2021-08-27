@@ -1,8 +1,43 @@
 {
   "projects": [{
+    "projectId": "the-third-place",
+    "title": "The Third Place",
+    "subtitle": "The stories of Ramsey Place",
+    "artist": "Brienna Macnish",
+    "metadata": {
+      "free": true,
+      "shortDescription": "The Third Place was commissioned in response to community tensions around the way young people were using public space.",
+      "longDescription": "The term Third Place refers to spaces outside of our homes and workplaces, social locations where people gather, socialise and find a sense of belonging.\n\nThird Places are supposed to be welcoming and open to anyone and everyone, they are the places we go to meet with the people we know and perhaps with people we don’t. But what happens when individuals or communities don’t have the social, cultural or financial capital to feel comfortable in these third places? What happens when people – especially young people – try and create third places for themselves?",
+      "additionalInformation": "This audio work is designed to be listened to at Ramsey Place, Port Noarlunga, South Australia.",
+      "acknowledgements": "The Third Place would not exist without everyone who shared their stories about the Green Area. Thank you to Ashley Yeo-Megeny, Kyle Whennan, Tyler Turnbull, Portia Clark, Jayda Harwood, Jessie McGrath, Tammy Dean, Molly Wilson, Lou Rankine, Bonnie Goergens, Jake Waring, Taylea Fry, Alan Jones, Sebby “Kitty” Rivera, Eryka Burns, Brandon Hogben and Jessica Salter.\n\nThank you to Rowlan for permission to use the song ‘Suicide Letter’ in The Third Place with altered lyrics by Molly Wilson. Thank you to everyone who offered advice and support including the City of Onkaparinga Youth and Arts teams, Activate Ramsay Place Working Group, Carclew staff and the Office for Youth.",
+      "coordinates": {
+        "latitude": -35.14074984551321, 
+        "longitude": 138.4952405572102
+      },
+      "credits": {
+        "Creative concept, writer": "Brienna Macnish",
+        "Creative concept, creative producer": "Alysha Hermann",
+        "Sound design and composition": "Robert D Jordan"
+      }
+      },
+    "chapters": [{
+      "chapterId": 0,
+      "title": "The Third Place"
+    }]
+  },{
     "projectId": "squishy-taylor-ghosts",
     "title": "Squishy Taylor", 
     "subtitle": "and the City-wide Ghost Plague",
+    "artist": "The Inhabitors",
+    "metadata": {
+      "heroImage": "gs://squishy-taylor-adventures.appspot.com/squishy-taylor-ghosts/heroImage.jpg",
+      "free": true,
+      "shortDescription": "Ghosts are appearing across the city and Squishy Taylor, 11-year-old ninja-spy and super-sleuth, is hot on their trail.",
+      "longDescription": "Squishy Taylor has a mystery to solve and she needs your help!\n\nGhosts are appearing across the city and Squishy Taylor, 11-year-old ninja-spy and super-sleuth, is hot on their trail. Without her all-important twin bonus sisters Jessie and Vee as backup, Squishy urgently needs you. Follow the clues, solve the puzzles and help Squishy unravel the mystery behind these phantom visions.\n\nA story adventure for your family to share whenever you choose, inspired by Ailsa Wild’s much-loved Squishy Taylor junior fiction series.",
+      "additionalInformation": "To experience this work you will need to have purchased a ticket to the experience and recieved your 'Sleuthing Scrapbook' via post.",
+      "acknowledgements": "Developed with the assistance of Royal Botanic Gardens Victoria, the Seaborn, Broughton & Walford Foundation, the Victorian Government through Creative Victoria and the Australian Government through the Australia Council, its arts funding and advisory body. This project is amplified by Melbourne Fringe as part of the Cash For Creatives Program.\n\nAdapted from the Squishy Taylor series written by Ailsa Wild, illustrated by Ben Wood and published by Hardie Grant.",
+      "credits": "Created by Brienna Macnish, Clare McCracken, Michele Lee and Simon Bedford with Ailsa Wild and Rebecca Etchell"
+    },
     "chapters": [{
       "chapterId" : 0,
       "chapterNumber" : "Welcome",
@@ -20,56 +55,25 @@
       "chapterNumber" : "Chapter Two",
       "text" : "You’ve definitely proved that you’re excellent at sleuthing. I’d love for you to solve this ghost mystery with me!\n\nYou’re right. The three places the ghosts have visited near me are the playground, bus shelter and car park. These places have one thing in common. The lights are on all the time.\n\nDo you have a place nearby to you that has lights on all the time? Can you use your Detective Drawing Skills to make a map for me? You can use the blank grid paper on the next page. Draw your ‘lights on all the time’ place on it too. This way we can start to build a bigger ghost map.\n\nWhen you’re done, send a picture of your map to me at squishysleuthing@gmail.com, and I’ll reply. Check your junk mail if you don’t hear from me!",
       "title" : "The ghost map gets bigger"
-    }, {
-      "chapterId" : 3,
-      "chapterNumber" : "Chapter Three",
-      "nextPage" : 14,
-      "text" : "",
-      "title" : "Venture into the night!"
-    }, {
-      "chapterId" : 4,
-      "chapterNumber" : "Chapter Four",
-      "nextPage" : 24,
-      "text" : "I got to the nature strip. I couldn’t get my camera to work but I did see some unusual things. The dirt in the nature strip looked like someone—or something—had just been digging around it. I also found a few things lying around the dirt so I put them into my backpack.\n\nI almost made it back in time when I saw Dad coming out of the lift. I couldn’t believe it; I was going to get busted for trying to make a ghost video!\n\n“Squishy, what are you doing out here?” he said. He paused, frowning. “I don’t suppose you came downstairs to buy ice-cream for surprise dessert.”\n\nI couldn’t tell him. So I lied.\n\n“Um. I dropped Baby’s favourite toy on the footpath. I went out to find it.”\n\nI could tell that Dad was disappointed with me. As we went up the elevator together, he told me I needed better communication skills. Once we got inside, he got Mum online to Zoom with me. She didn’t yell at me though. “We’re not angry with you, kiddo,” she said. “We’re just keen for you to tell us your plans. Then we can negotiate or compromise.” When Mum finished speaking with me, I went to Dad.\n\n“Mayyyybe next time I want to go out at night, I should ask you first?” I said.\n\nDad grinned. “I might just surprise you and say yes.”\n\nBack in my room, I put my camera away. I opened my backpack and took out what I’d found at the nature strip. I’m sure this has something to do with the ghosts.",
-      "title" : "Venture into the night!"
-    }, {
-      "chapterId" : 5,
-      "chapterNumber" : "Chapter Five",
-      "nextPage": 30,
-      "text" : "I got to the nature strip. I couldn’t get my camera to work but I did see some unusual things. The dirt in the nature strip looked like someone—or something—had just been digging around it. I also found a few things lying around the dirt so I put them into my backpack.\n\nI almost made it back in time when I saw Dad coming out of the lift. I couldn’t believe it; I was going to get busted for trying to make a ghost video!\n\n“Squishy, what are you doing out here?” he said. He paused, frowning. “I don’t suppose you came downstairs to buy ice-cream for surprise dessert.”\n\nI couldn’t tell him. So I lied.\n\n“Um. I dropped Baby’s favourite toy on the footpath. I went out to find it.”\n\nI could tell that Dad was disappointed with me. As we went up the elevator together, he told me I needed better communication skills. Once we got inside, he got Mum online to Zoom with me. She didn’t yell at me though. “We’re not angry with you, kiddo,” she said. “We’re just keen for you to tell us your plans. Then we can negotiate or compromise.” When Mum finished speaking with me, I went to Dad.\n\n“Mayyyybe next time I want to go out at night, I should ask you first?” I said.\n\nDad grinned. “I might just surprise you and say yes.”\n\nBack in my room, I put my camera away. I opened my backpack and took out what I’d found at the nature strip. I’m sure this has something to do with the ghosts.",
-      "title" : "Venture into the night!"
-    }]
-  
-  
-  },
-  {
-    "projectId": "audio-work-1",
-    "title": "Home Alone",
-    "subtitle": "A meditation on disaster, isolation and hope",
-    "chapters": [{
-      "chapterId": 0,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis in ipsum nec dictum. Etiam efficitur, nisl vel placerat cursus, nibh est congue sem, ac sodales ante sapien quis diam. Cras vitae aliquam magna, ac luctus lorem. Phasellus molestie ex ac ante dictum feugiat. Sed sit amet molestie sem. Maecenas tempus urna ut nisi lacinia, at hendrerit purus euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. \n\nCras egestas justo in lorem tempor maximus. Nullam nec dignissim metus. Phasellus commodo tortor et auctor condimentum. Sed condimentum justo eros, condimentum ultricies risus lobortis quis. Mauris faucibus ligula sed nibh convallis pellentesque. Mauris nunc nisi, vestibulum at nunc in, efficitur hendrerit turpis. Pellentesque sagittis, nibh a scelerisque convallis, nibh diam bibendum odio, quis molestie turpis dolor mollis massa. Duis ut hendrerit ligula. Sed vel lectus sodales orci iaculis mattis congue at ligula. Proin pretium sapien porttitor massa semper pulvinar. Vestibulum sodales purus ac tortor tempus, et rhoncus lorem laoreet.",
-      "title": "A meditation on disaster, isolation and hope"
     }]
   },
+
   {
-    "projectId": "audio-work-2",
-    "title": "Fast food slowly",
-    "subtitle": "Eating slowly at a fast food restaurant",
-    "chapters": [{
+    "projectId": "in-your-own-words",
+    "title": "In Your Own Words",
+    "subtitle": "Eating fast food slowly",
+    "artist": "Brienna Macnish",
+      "metadata": {
+      "heroImage": "gs://squishy-taylor-adventures.appspot.com/in-your-own-words/heroImage.jpg",
+      "free": true,
+      "shortDescription": "In Your Own Words explores how one person's social hub can, for another, be the loneliest place in the world.",
+      "additionalInformation": "In Your Own Words is a documentary audio work designed to be listened to in a fast food restaurant. We recommend you head to your favourite fast food spot, order and pop in your headphones.",
+      "acknowledgements": "In Your Own Words, was commissioned by Melbourne Fringe Festival, 2014 and would not have been possible without the generous contributions of the following people, Austin, Azura, Dean Bradley, Rosie D'Aquino, Abby Heeney, Bianca Hill, Jack, Leo, Rupert and Max, James Kounas, Claudia Marapodi, Zane McDonald, Ali Phelan, Elanor Riddoch, Sumeyye, Lisa Theilig."
+
+    },
+      "chapters": [{
       "chapterId": 0,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis in ipsum nec dictum. Etiam efficitur, nisl vel placerat cursus, nibh est congue sem, ac sodales ante sapien quis diam. Cras vitae aliquam magna, ac luctus lorem. Phasellus molestie ex ac ante dictum feugiat. Sed sit amet molestie sem. Maecenas tempus urna ut nisi lacinia, at hendrerit purus euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. \n\nCras egestas justo in lorem tempor maximus. Nullam nec dignissim metus. Phasellus commodo tortor et auctor condimentum. Sed condimentum justo eros, condimentum ultricies risus lobortis quis. Mauris faucibus ligula sed nibh convallis pellentesque. Mauris nunc nisi, vestibulum at nunc in, efficitur hendrerit turpis. Pellentesque sagittis, nibh a scelerisque convallis, nibh diam bibendum odio, quis molestie turpis dolor mollis massa. Duis ut hendrerit ligula. Sed vel lectus sodales orci iaculis mattis congue at ligula. Proin pretium sapien porttitor massa semper pulvinar. Vestibulum sodales purus ac tortor tempus, et rhoncus lorem laoreet.",
-      "title": "Over the rainbow"
-    }]
-  },
-  {
-    "projectId": "audio-work-3",
-    "title": "Walking Birrarung Marr",
-    "subtitle": "A tour of the Birrarung Marr (Yarra) river in Narum (Melbourne)",
-    "chapters": [{
-      "chapterId": 0,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis in ipsum nec dictum. Etiam efficitur, nisl vel placerat cursus, nibh est congue sem, ac sodales ante sapien quis diam. Cras vitae aliquam magna, ac luctus lorem. Phasellus molestie ex ac ante dictum feugiat. Sed sit amet molestie sem. Maecenas tempus urna ut nisi lacinia, at hendrerit purus euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. \n\nCras egestas justo in lorem tempor maximus. Nullam nec dignissim metus. Phasellus commodo tortor et auctor condimentum. Sed condimentum justo eros, condimentum ultricies risus lobortis quis. Mauris faucibus ligula sed nibh convallis pellentesque. Mauris nunc nisi, vestibulum at nunc in, efficitur hendrerit turpis. Pellentesque sagittis, nibh a scelerisque convallis, nibh diam bibendum odio, quis molestie turpis dolor mollis massa. Duis ut hendrerit ligula. Sed vel lectus sodales orci iaculis mattis congue at ligula. Proin pretium sapien porttitor massa semper pulvinar. Vestibulum sodales purus ac tortor tempus, et rhoncus lorem laoreet.",
-      "title": "A walk through history"
+      "title": "In Your Own Words"
     }]
   }
 ]}

@@ -10,13 +10,12 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     flex: 1,
-    height: 200,
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
     overflow: 'hidden',
   },
   map: {
-    height: 200,
+    flex: 1,
   },
 })
 
@@ -30,7 +29,7 @@ interface MapProps {
 }
 
 export default function Map({ coordinates }: MapProps) {
-  const itemWidth = Dimensions.get('window').width - 64
+  const width = Dimensions.get('window').width - 64
   const { latitude, longitude } = coordinates
   return (
     <View style={styles.container}>
@@ -42,7 +41,7 @@ export default function Map({ coordinates }: MapProps) {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-          style={[styles.map, { width: itemWidth }]}
+          style={[styles.map, { width: width }]}
         >
           <Marker coordinate={coordinates} />
         </MapView>

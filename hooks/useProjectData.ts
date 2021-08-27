@@ -1,10 +1,22 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useCallback, useEffect, useState } from 'react'
+import { Coordinates } from '../components/Map'
+
+interface MetadataType {
+  free: boolean
+  shortDescription: string
+  longDescription?: string
+  additionalInformation?: string
+  coordinates?: Coordinates
+  heroImage?: string
+}
 
 export interface ProjectType {
   projectId: string
   title: string
   subtitle: string
+  artist: string
+  metadata: MetadataType
   chapters: Array<ChapterType>
 }
 
@@ -12,7 +24,7 @@ export interface ChapterType {
   chapterId: number
   chapterNumber?: string
   title: string
-  text: string
+  text?: string
   nextPage?: number
 }
 

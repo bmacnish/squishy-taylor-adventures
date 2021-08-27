@@ -23,7 +23,7 @@ async function storeData(value: string) {
   }
 }
 
-async function loadChapters() {
+async function loadProjects() {
   const ref = await firebase.database().ref('/')
   const projectData = await (await ref.once('value')).val()
   const projectDataString = JSON.stringify(projectData)
@@ -49,7 +49,7 @@ export default function useFirebase() {
       try {
         await initFirebase()
         await createOrLoginAnonymousUser()
-        await loadChapters()
+        await loadProjects()
       } catch (error) {
         // TODO: Handle error
         console.log(error)
