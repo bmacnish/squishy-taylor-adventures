@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
-import { Body1, H2Text, H3Text, LabelText } from './StyledText'
+import { Body1, H3Text, LabelText } from './StyledText'
 import { ProjectType } from '../hooks/useProjectData'
 import Map from '../components/Map'
 import useDynamicTextColor from '../hooks/useDynamicTextColor'
@@ -50,10 +50,9 @@ export default function ProjectCarousel({ data }: ProjectCarouselProps) {
   const navigation = useNavigation()
   const textColor = useDynamicTextColor()
 
-  const onPress = (projectId: string, projectTitle: string) => {
-    navigation.navigate('ProjectScreen', {
+  const onPress = (projectId: string) => {
+    navigation.navigate('ProjectInfoModalScreen', {
       projectId: projectId,
-      name: projectTitle,
     })
   }
 
@@ -63,7 +62,7 @@ export default function ProjectCarousel({ data }: ProjectCarouselProps) {
 
     return (
       <View style={[styles.card]}>
-        <TouchableOpacity onPress={() => onPress(projectId, title)}>
+        <TouchableOpacity onPress={() => onPress(projectId)}>
           <View style={styles.projectCardContainer}>
             {coordinates && <Map coordinates={coordinates} />}
             {heroImage && <HeroImage projectId={projectId} />}

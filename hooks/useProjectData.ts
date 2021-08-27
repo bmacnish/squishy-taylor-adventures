@@ -9,6 +9,8 @@ interface MetadataType {
   additionalInformation?: string
   coordinates?: Coordinates
   heroImage?: string
+  credits?: {[key: string]: string}
+  acknowledgements?: string
 }
 
 export interface ProjectType {

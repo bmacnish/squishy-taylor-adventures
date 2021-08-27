@@ -19,4 +19,7 @@ export type HomeParamList = {
     chapterId: number
     name?: string
   }
+  ProjectInfoModalScreen: {
+    projectId: string
+  }
 }
