@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   carousel: {
-    paddingVertical: 16,
+    marginTop: -38,
   },
 })
 
