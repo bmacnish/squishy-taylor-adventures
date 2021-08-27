@@ -3,9 +3,11 @@ import React from 'react'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { colors } from '../constants/Colors'
-import { H2Text } from './StyledText'
-import { LinearGradient } from 'expo-linear-gradient'
+import { Body1, H2Text, H3Text } from './StyledText'
 import { ProjectType } from '../hooks/useProjectData'
+import Map from '../components/Map'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
+import { Ionicons } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
@@ -16,16 +18,21 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#ddd',
   },
   projectCardContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    height: '94%',
-    width: '92%',
+    flex: 1,
+  },
+  description: {
+    flex: 2,
+    justifyContent: 'space-around',
+    padding: 8,
   },
   projectTitle: {
     paddingTop: 8,
+  },
+  lockContainer: {
+    flexDirection: 'row-reverse',
   },
 })
 
@@ -37,6 +44,11 @@ export default function ProjectCarousel({ data }: ProjectCarouselProps) {
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation()
+  const textColor = useDynamicTextColor()
+  const coordinates = {
+    latitude: -37.8136,
+    longitude: 144.9631,
+  }
 
   const onPress = (projectId: string, projectTitle: string) => {
     navigation.navigate('ProjectScreen', {
@@ -47,23 +59,28 @@ export default function ProjectCarousel({ data }: ProjectCarouselProps) {
 
   const renderItem = ({ item }: { item: ProjectType }) => {
     return (
-      <LinearGradient
-        colors={[colors.orange, colors.magenta, colors.darkblue]}
-        style={[styles.card]}
-        start={{ x: 0.1, y: 0.2 }}
-      >
+      <View style={[styles.card]}>
         <TouchableOpacity onPress={() => onPress(item.projectId, item.title)}>
           <View style={styles.projectCardContainer}>
-            <H2Text
-              color={colors.light}
-              align="center"
-              style={styles.projectTitle}
-            >
-              {item.title}
-            </H2Text>
+            <Map coordinates={coordinates} />
+            <View style={styles.description}>
+              <View>
+                <H2Text color={textColor} style={styles.projectTitle}>
+                  {item.title}
+                </H2Text>
+                <H3Text color={textColor}>by The Inhabitors</H3Text>
+              </View>
+              <Body1 color={textColor}>
+                Ghosts are appearing across the city and Squishy Taylor,
+                11-year-old ninja-spy and super-sleuth, is hot on their trail.
+              </Body1>
+              <View style={styles.lockContainer}>
+                <Ionicons name="ios-lock-closed" size={32} color={textColor} />
+              </View>
+            </View>
           </View>
         </TouchableOpacity>
-      </LinearGradient>
+      </View>
     )
   }
 
