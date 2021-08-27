@@ -6,13 +6,15 @@ import { colors } from '../constants/Colors'
 import { useColorScheme } from 'react-native'
 import ProjectCarousel from '../components/ProjectCarousel'
 import useProjectData from '../hooks/useProjectData'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title: {
-    alignItems: 'center',
+  alignCenter: {
+    textAlign: 'center',
+    paddingVertical: 4,
   },
   carousel: {
     paddingVertical: 16,
@@ -23,9 +25,18 @@ const styles = StyleSheet.create({
   },
 })
 
+const translations = {
+  title: 'Whispers',
+  subtitle: 'A curated collection of audio experiences',
+  description1:
+    'Whispers are audio experiences created by hand selected independent artists.',
+  description2: 'New works are added to the collection regularly.',
+}
+
 export default function HomeScreen() {
   const colorScheme = useColorScheme()
   const projects = useProjectData()
+  const textColor = useDynamicTextColor()
 
   return (
     <SafeAreaView
@@ -43,24 +54,23 @@ export default function HomeScreen() {
           justifyContent: 'center',
         }}
       >
-        <View style={styles.title}>
-          <H1Text color={colors.orange} style={{ textAlign: 'center' }}>
-            Whispers
+        <View>
+          <H1Text color={textColor} style={styles.alignCenter}>
+            {translations.title}
           </H1Text>
-          <H3Text style={{ textAlign: 'center' }}>
-            A curated collection of audio experiences
+          <H3Text color={textColor} style={styles.alignCenter}>
+            {translations.subtitle}
           </H3Text>
         </View>
         <View style={styles.carousel}>
           {projects && <ProjectCarousel data={projects} />}
         </View>
-        <View style={styles.title}>
-          <Body1 style={styles.body}>
-            Whispers are audio experiences created by hand selected independent
-            artists.
+        <View>
+          <Body1 color={textColor} style={styles.body}>
+            {translations.description1}
           </Body1>
-          <Body1 style={styles.body}>
-            New works are added to the collection regularly.
+          <Body1 color={textColor} style={styles.body}>
+            {translations.description2}
           </Body1>
         </View>
       </View>

@@ -6,6 +6,7 @@ import { colors } from '../constants/Colors'
 import { H2Text } from './StyledText'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ProjectType } from '../hooks/useProjectData'
+import getProjectDataById from '../helpers/getProjectDataById'
 
 const styles = StyleSheet.create({
   container: {
