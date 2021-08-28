@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   h4: {
     fontSize: 18,
     lineHeight: 22,
+    fontWeight: '300',
   },
   body1: {
     fontSize: 18,

@@ -60,6 +60,12 @@ export default function HomeNavigator() {
           options={({ route }) => ({
             projectId: route.params?.projectId ? route.params?.projectId : '',
             headerBackTitleVisible: false,
+            headerTintColor: colors.orange,
+            title: '',
+            headerStyle: {
+              backgroundColor:
+                colorScheme === 'light' ? colors.offWhite : colors.dark,
+            },
           })}
         />
       </HomeStack.Group>
