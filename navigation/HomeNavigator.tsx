@@ -1,12 +1,11 @@
-import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from '../constants/Colors'
 import ChapterScreen from '../screens/ChapterScreen'
 import HomeScreen from '../screens/HomeScreen'
 import ProjectScreen from '../screens/ProjectScreen'
 import { HomeParamList } from '../types'
 import { useColorScheme } from 'react-native'
-import ProjectInfoModal from '../screens/ProjectInfoModalScreen'
 import ProjectInfoModalScreen from '../screens/ProjectInfoModalScreen'
 
 const HomeStack = createStackNavigator<HomeParamList>()
@@ -15,7 +14,7 @@ export default function HomeNavigator() {
   const colorScheme = useColorScheme()
 
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName={'HomeScreen'}>
       <HomeStack.Group>
         <HomeStack.Screen
           name="HomeScreen"

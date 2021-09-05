@@ -10,21 +10,25 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      Home: {
         screens: {
           Home: {
             screens: {
               HomeScreen: 'one',
             },
           },
-          Settings: {
+          ProjectScreen: {
             screens: {
-              SettingsScreen: 'two',
+              ProjectScreen: 'two',
+            },
+          },
+          ChapterScreen: {
+            screens: {
+              ChapterScreen: 'three',
             },
           },
         },
       },
-      NotFound: '*',
     },
   },
 }

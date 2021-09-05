@@ -1,4 +1,3 @@
-import { RouteProp } from '@react-navigation/native'
 import React from 'react'
 import getProjectDataById from '../helpers/getProjectDataById'
 import { HomeParamList } from '../types'
@@ -8,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import useColorScheme from '../hooks/useColorScheme'
 import { colors } from '../constants/Colors'
 import Credits from '../components/Credits'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,16 +21,13 @@ const styles = StyleSheet.create({
   },
 })
 
-type ProjectInfoModalRouteProps = RouteProp<
+type ProjectInfoModalProps = NativeStackScreenProps<
   HomeParamList,
   'ProjectInfoModalScreen'
 >
 
-interface ProjectInfoModalProps {
-  route: ProjectInfoModalRouteProps
-}
-
 export default function ProjectInfoModalScreen({
+  navigation,
   route,
 }: ProjectInfoModalProps) {
   const colorScheme = useColorScheme()
@@ -38,7 +35,10 @@ export default function ProjectInfoModalScreen({
   const project = getProjectDataById(projectId)
 
   const onPress = () => {
-    Alert.alert('Subscription flow', 'This is a placeholder')
+    navigation.navigate('ProjectScreen', {
+      projectId: projectId,
+      name: project?.title,
+    })
   }
   return (
     <SafeAreaView

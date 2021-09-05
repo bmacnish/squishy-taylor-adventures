@@ -4,9 +4,9 @@ import { View } from '../components/Themed'
 import CardCarousel from '../components/CardCarousel'
 import { colors } from '../constants/Colors'
 import { useColorScheme } from 'react-native'
-import { RouteProp } from '@react-navigation/native'
 import { HomeParamList } from '../types'
 import getProjectDataById from '../helpers/getProjectDataById'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 const styles = StyleSheet.create({
   container: {
@@ -19,11 +19,7 @@ const styles = StyleSheet.create({
   },
 })
 
-type ProjectScreenRouteProps = RouteProp<HomeParamList, 'ProjectScreen'>
-
-interface ProjectScreenProps {
-  route: ProjectScreenRouteProps
-}
+type ProjectScreenProps = NativeStackScreenProps<HomeParamList, 'ProjectScreen'>
 
 export default function ProjectScreen({ route }: ProjectScreenProps) {
   const colorScheme = useColorScheme()

@@ -5,7 +5,7 @@ import AudioPlayer from '../components/AudioPlayer'
 import DropDownText from '../components/DropDownText'
 import getChapterDataById from '../helpers/getChapterDataById'
 import { toTitleCase } from '../helpers/textHelpers'
-import { RouteProp } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { HomeParamList } from '../types'
 import { colors } from '../constants/Colors'
 import NextPage from '../components/NextPage'
@@ -28,11 +28,7 @@ const styles = StyleSheet.create({
   },
 })
 
-type ChapterScreenRouteProps = RouteProp<HomeParamList, 'ChapterScreen'>
-
-interface ChapterScreenProps {
-  route: ChapterScreenRouteProps
-}
+type ChapterScreenProps = NativeStackScreenProps<HomeParamList, 'ChapterScreen'>
 
 export default function ChapterScreen({ route }: ChapterScreenProps) {
   const { projectId, chapterId } = route.params
