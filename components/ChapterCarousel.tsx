@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 })
 
-interface CardCarouselProps {
+interface ChapterCarouselProps {
   projectId: string
   chapters: ChapterType[]
 }
@@ -44,10 +44,10 @@ interface IntroductionCard {
   subtitle: string
 }
 
-export default function CardCarousel({
+export default function ChapterCarousel({
   projectId,
   chapters,
-}: CardCarouselProps) {
+}: ChapterCarouselProps) {
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation<ProjectScreenNavigationProp>()

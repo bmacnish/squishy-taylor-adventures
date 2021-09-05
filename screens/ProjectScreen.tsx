@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
 import { View } from '../components/Themed'
-import CardCarousel from '../components/CardCarousel'
+import ChapterCarousel from '../components/ChapterCarousel'
 import { colors } from '../constants/Colors'
 import { useColorScheme } from 'react-native'
 import { ProjectScreenProps } from '../types'
@@ -35,7 +35,10 @@ export default function ProjectScreen({ route }: ProjectScreenProps) {
       {project && (
         <View style={styles.container}>
           <View style={styles.carousel}>
-            <CardCarousel projectId={projectId} chapters={project.chapters} />
+            <ChapterCarousel
+              projectId={projectId}
+              chapters={project.chapters}
+            />
           </View>
         </View>
       )}

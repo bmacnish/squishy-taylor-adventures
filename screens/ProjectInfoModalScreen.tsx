@@ -84,6 +84,7 @@ export default function ProjectInfoModalScreen({
           </ScrollView>
           {!project.metadata.free && (
             <Button
+              color={colors.orange}
               title={`Purchase ${project.title}`}
               onPress={onPress}
             ></Button>
