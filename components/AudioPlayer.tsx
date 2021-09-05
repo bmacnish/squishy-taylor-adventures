@@ -60,10 +60,12 @@ const SEEK_BUFFER = 15000
 
 interface AudioPlayerProps {
   chapterId: number
+  projectId: string
 }
 
 export default function AudioPlayer({
   chapterId,
+  projectId,
 }: AudioPlayerProps): JSX.Element {
   const [sound, setSound] = useState<Audio.Sound>()
   const [isLoading, setIsLoading] = useState(true)
@@ -98,7 +100,9 @@ export default function AudioPlayer({
   const getDownloadUrl = useCallback(async () => {
     const defaultStorage = await firebase.storage()
     const chapterIdString = chapterId.toString()
-    const storageRef = await defaultStorage.ref(`/${chapterIdString}.mp3`)
+    const storageRef = await defaultStorage.ref(
+      `/${projectId}/${chapterId}.mp3`
+    )
     const url = await storageRef.getDownloadURL()
 
     return url
