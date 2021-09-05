@@ -7,6 +7,7 @@ import { useColorScheme } from 'react-native'
 import ProjectCarousel from '../components/ProjectCarousel'
 import useProjectData from '../hooks/useProjectData'
 import useDynamicTextColor from '../hooks/useDynamicTextColor'
+import { HomeScreenProps } from '../types'
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +34,7 @@ const translations = {
   description2: 'New works are added to the collection regularly.',
 }
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation, route }: HomeScreenProps) {
   const colorScheme = useColorScheme()
   const projects = useProjectData()
   const textColor = useDynamicTextColor()

@@ -7,6 +7,7 @@ import { H2Text, H3Text } from './StyledText'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ChapterType } from '../hooks/useProjectData'
 import getProjectDataById from '../helpers/getProjectDataById'
+import { ProjectScreenNavigationProp } from '../types'
 
 const styles = StyleSheet.create({
   container: {
@@ -49,7 +50,7 @@ export default function CardCarousel({
 }: CardCarouselProps) {
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
-  const navigation = useNavigation()
+  const navigation = useNavigation<ProjectScreenNavigationProp>()
   const project = getProjectDataById(projectId)
 
   const onPress = (
@@ -121,7 +122,12 @@ export default function CardCarousel({
           style={[styles.card]}
           start={{ x: 0.1, y: 0.2 }}
         >
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              // TODO
+              console.log('Implement me!')
+            }}
+          >
             <View style={styles.cardContainer}>
               <H2Text
                 color={colors.light}

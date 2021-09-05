@@ -3,6 +3,8 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+
 export type HomeParamList = {
   HomeScreen: undefined
   ProjectScreen: {
@@ -18,3 +20,16 @@ export type HomeParamList = {
     projectId: string
   }
 }
+
+export type HomeScreenProps = NativeStackScreenProps<
+  HomeParamList,
+  'HomeScreen'
+>
+export type HomeScreenNavigationProp = HomeScreenProps['navigation']
+
+export type ProjectScreenProps = NativeStackScreenProps<
+  HomeParamList,
+  'ProjectScreen'
+>
+
+export type ProjectScreenNavigationProp = ProjectScreenProps['navigation']

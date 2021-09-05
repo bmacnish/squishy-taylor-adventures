@@ -8,6 +8,7 @@ import Map from '../components/Map'
 import useDynamicTextColor from '../hooks/useDynamicTextColor'
 import { Ionicons } from '@expo/vector-icons'
 import HeroImage from './HeroImage'
+import { HomeScreenNavigationProp } from '../types'
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +48,7 @@ interface ProjectCarouselProps {
 export default function ProjectCarousel({ data }: ProjectCarouselProps) {
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
-  const navigation = useNavigation()
+  const navigation = useNavigation<HomeScreenNavigationProp>()
   const textColor = useDynamicTextColor()
 
   const onPress = (projectId: string) => {
