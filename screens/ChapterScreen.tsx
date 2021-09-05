@@ -9,7 +9,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { HomeParamList } from '../types'
 import { colors } from '../constants/Colors'
 import NextPage from '../components/NextPage'
-import { LinearGradient } from 'expo-linear-gradient'
+import { useColorScheme } from 'react-native'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
 
 const styles = StyleSheet.create({
   container: {
@@ -41,17 +42,22 @@ type ChapterScreenProps = NativeStackScreenProps<HomeParamList, 'ChapterScreen'>
 export default function ChapterScreen({ route }: ChapterScreenProps) {
   const { projectId, chapterId } = route.params
   const chapter = getChapterDataById(projectId, chapterId)
+  const colorScheme = useColorScheme()
+  const textColor = useDynamicTextColor()
 
   return (
-    <LinearGradient
-      style={styles.container}
-      colors={[colors.magenta, colors.darkblue]}
-      start={{ x: -0.1, y: 0 }}
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: colorScheme === 'light' ? colors.light : colors.dark,
+        },
+      ]}
     >
       {chapter && (
         <>
           <View style={styles.titleContainer}>
-            <H2Text color={colors.light} style={styles.title}>
+            <H2Text color={textColor} style={styles.title}>
               {toTitleCase(chapter.title)}
             </H2Text>
           </View>
@@ -61,7 +67,7 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
               <DropDownText
                 text={chapter.text}
                 labelText={translations.dropDownText}
-                textColor={colors.light}
+                textColor={textColor}
               />
             </View>
           )}
@@ -70,6 +76,6 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
           )}
         </>
       )}
-    </LinearGradient>
+    </View>
   )
 }
