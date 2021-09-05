@@ -31,12 +31,11 @@ export default function Credits({ credits }: CreditType) {
   }, [credits])
 
   const creditItems = roles?.map((role, index) => {
-    const credit = role
     const artist = typeof credits === 'object' ? credits[role] : ''
 
     return (
       <View style={styles.itemContainer} key={index}>
-        <Body1>{credit}</Body1>
+        <Body1>{role}</Body1>
         <LabelText style={styles.title}>{artist}</LabelText>
       </View>
     )
