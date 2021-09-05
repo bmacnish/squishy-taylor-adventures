@@ -2,7 +2,7 @@ import React from 'react'
 import getProjectDataById from '../helpers/getProjectDataById'
 import { HomeParamList } from '../types'
 import { Body1, H2Text, H4Text } from '../components/StyledText'
-import { View, StyleSheet, SafeAreaView, Button } from 'react-native'
+import { View, StyleSheet, SafeAreaView, Button, Alert } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import useColorScheme from '../hooks/useColorScheme'
 import { colors } from '../constants/Colors'
@@ -33,8 +33,8 @@ type ProjectInfoModalProps = NativeStackScreenProps<
 >
 
 export default function ProjectInfoModalScreen({
-  navigation,
   route,
+  navigation,
 }: ProjectInfoModalProps) {
   const colorScheme = useColorScheme()
   const projectId = route.params?.projectId
@@ -42,10 +42,14 @@ export default function ProjectInfoModalScreen({
   const textColor = useDynamicTextColor()
 
   const onPress = () => {
-    navigation.navigate('ProjectScreen', {
-      projectId: projectId,
-      name: project?.title,
-    })
+    Alert.alert('Purchase flow', 'This is a placeholder', [
+      {
+        text: 'OK',
+        onPress: () => {
+          navigation.goBack()
+        },
+      },
+    ])
   }
 
   return (
@@ -78,10 +82,12 @@ export default function ProjectInfoModalScreen({
               )}
             </View>
           </ScrollView>
-          <Button
-            title={`Listen to ${project.title}`}
-            onPress={onPress}
-          ></Button>
+          {!project.metadata.free && (
+            <Button
+              title={`Purchase ${project.title}`}
+              onPress={onPress}
+            ></Button>
+          )}
         </>
       ) : null}
     </SafeAreaView>

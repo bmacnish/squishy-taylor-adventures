@@ -32,8 +32,13 @@ const styles = StyleSheet.create({
   projectTitle: {
     paddingTop: 8,
   },
-  lockContainer: {
+  iconContainer: {
     flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    padding: 4,
+  },
+  labeledIcon: {
+    alignItems: 'center',
   },
   image: {
     height: 200,
@@ -51,36 +56,76 @@ export default function ProjectCarousel({ data }: ProjectCarouselProps) {
   const navigation = useNavigation<HomeScreenNavigationProp>()
   const textColor = useDynamicTextColor()
 
-  const onPress = (projectId: string) => {
+  const infoOnPress = (projectId: string) => {
     navigation.navigate('ProjectInfoModalScreen', {
       projectId: projectId,
     })
   }
 
+  const listenOnPress = (projectId: string, name: string) => {
+    navigation.navigate('ProjectScreen', {
+      projectId,
+      name,
+    })
+  }
+
   const renderItem = ({ item }: { item: ProjectType }) => {
     const { metadata, title, artist, projectId } = item
-    const { coordinates, shortDescription, heroImage } = metadata
+    const { coordinates, shortDescription, heroImage, free } = metadata
 
     return (
       <View style={[styles.card]}>
-        <TouchableOpacity onPress={() => onPress(projectId)}>
-          <View style={styles.projectCardContainer}>
-            {coordinates && <Map coordinates={coordinates} />}
-            {heroImage && <HeroImage projectId={projectId} />}
-            <View style={styles.description}>
-              <View>
-                <H3Text color={textColor} style={styles.projectTitle}>
-                  {title}
-                </H3Text>
-                <LabelText color={textColor}>by {artist}</LabelText>
-              </View>
-              <Body1 color={textColor}>{shortDescription}</Body1>
-              <View style={styles.lockContainer}>
-                <Ionicons name="ios-lock-closed" size={32} color={textColor} />
-              </View>
+        <View style={styles.projectCardContainer}>
+          {coordinates && <Map coordinates={coordinates} />}
+          {heroImage && <HeroImage projectId={projectId} />}
+          <View style={styles.description}>
+            <View>
+              <H3Text color={textColor} style={styles.projectTitle}>
+                {title}
+              </H3Text>
+              <LabelText color={textColor}>by {artist}</LabelText>
+            </View>
+            <Body1 color={textColor}>{shortDescription}</Body1>
+            <View style={styles.iconContainer}>
+              {free ? (
+                <TouchableOpacity
+                  style={styles.labeledIcon}
+                  onPress={() => listenOnPress(projectId, title)}
+                >
+                  <Ionicons
+                    name="ios-ear-outline"
+                    size={32}
+                    color={textColor}
+                  />
+                  <LabelText>listen</LabelText>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={styles.labeledIcon}
+                  onPress={() => infoOnPress(projectId)}
+                >
+                  <Ionicons
+                    name="lock-open-outline"
+                    size={32}
+                    color={textColor}
+                  />
+                  <LabelText>buy</LabelText>
+                </TouchableOpacity>
+              )}
+              <TouchableOpacity
+                style={styles.labeledIcon}
+                onPress={() => infoOnPress(projectId)}
+              >
+                <Ionicons
+                  name="information-circle-outline"
+                  size={32}
+                  color={textColor}
+                />
+                <LabelText>info</LabelText>
+              </TouchableOpacity>
             </View>
           </View>
-        </TouchableOpacity>
+        </View>
       </View>
     )
   }
