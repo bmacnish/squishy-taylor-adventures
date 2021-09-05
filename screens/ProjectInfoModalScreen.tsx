@@ -2,12 +2,14 @@ import React from 'react'
 import getProjectDataById from '../helpers/getProjectDataById'
 import { HomeParamList } from '../types'
 import { Body1, H2Text, H4Text } from '../components/StyledText'
-import { View, StyleSheet, SafeAreaView, Button, Alert } from 'react-native'
+import { View, StyleSheet, SafeAreaView, Button } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import useColorScheme from '../hooks/useColorScheme'
 import { colors } from '../constants/Colors'
 import Credits from '../components/Credits'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import DropDownText from '../components/DropDownText'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +23,10 @@ const styles = StyleSheet.create({
   },
 })
 
+const translations = {
+  acknowledgements: 'Acknowledgements',
+}
+
 type ProjectInfoModalProps = NativeStackScreenProps<
   HomeParamList,
   'ProjectInfoModalScreen'
@@ -33,6 +39,7 @@ export default function ProjectInfoModalScreen({
   const colorScheme = useColorScheme()
   const projectId = route.params?.projectId
   const project = getProjectDataById(projectId)
+  const textColor = useDynamicTextColor()
 
   const onPress = () => {
     navigation.navigate('ProjectScreen', {
@@ -40,6 +47,7 @@ export default function ProjectInfoModalScreen({
       name: project?.title,
     })
   }
+
   return (
     <SafeAreaView
       style={{
@@ -61,8 +69,13 @@ export default function ProjectInfoModalScreen({
               {project.metadata.credits && (
                 <Credits credits={project.metadata.credits} />
               )}
-              {/* <H4Text>Acknowlegements</H4Text>
-            <Body1>{project.metadata.acknowledgements}</Body1> */}
+              {project.metadata.acknowledgements && (
+                <DropDownText
+                  labelText={translations.acknowledgements}
+                  text={project.metadata.acknowledgements}
+                  textColor={textColor}
+                />
+              )}
             </View>
           </ScrollView>
           <Button

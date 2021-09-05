@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
   },
+  dropDownText: {
+    paddingTop: 24,
+    flex: 1,
+  },
   nextPage: {
     padding: 16,
   },
@@ -53,10 +57,13 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
           </View>
           <AudioPlayer chapterId={chapterId} />
           {chapter.text && (
-            <DropDownText
-              chapterText={chapter.text}
-              labelText={translations.dropDownText}
-            />
+            <View style={styles.dropDownText}>
+              <DropDownText
+                text={chapter.text}
+                labelText={translations.dropDownText}
+                textColor={colors.light}
+              />
+            </View>
           )}
           {chapter?.nextPage && (
             <NextPage projectId={projectId} chapterId={chapterId} />

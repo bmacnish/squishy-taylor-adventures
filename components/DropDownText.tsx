@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1 } from '../components/StyledText'
-import { colors } from '../constants/Colors'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
 
 const styles = StyleSheet.create({
   textToggleBarContainer: {
@@ -12,11 +12,13 @@ const styles = StyleSheet.create({
   textToggleBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 24,
     marginBottom: 16,
     alignSelf: 'stretch',
     padding: 8,
     borderBottomWidth: 2,
+  },
+  labelText: {
+    textTransform: 'uppercase',
   },
   textContainer: {
     flex: 1,
@@ -25,29 +27,35 @@ const styles = StyleSheet.create({
 })
 
 export default function DropDownText({
-  chapterText,
+  text,
+  textColor,
   labelText,
 }: {
-  chapterText: string
+  text: string
+  textColor?: string
   labelText: string
 }) {
   const [toggleText, setToggleText] = useState(false)
+  const defaultTextColor = useDynamicTextColor()
+  const color = textColor ? textColor : defaultTextColor
 
   return (
     <View style={styles.textToggleBarContainer}>
-      <View style={[styles.textToggleBar, { borderBottomColor: colors.light }]}>
-        <Body1 color={colors.light}>{labelText}</Body1>
+      <View style={[styles.textToggleBar, { borderBottomColor: color }]}>
+        <Body1 color={color} style={styles.labelText}>
+          {labelText}
+        </Body1>
         <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
           {!toggleText ? (
-            <AntDesign name="down-square-o" size={24} color={colors.light} />
+            <AntDesign name="down-square-o" size={24} color={color} />
           ) : (
-            <AntDesign name="closesquareo" size={24} color={colors.light} />
+            <AntDesign name="closesquareo" size={24} color={color} />
           )}
         </TouchableOpacity>
       </View>
       {toggleText && (
         <ScrollView style={styles.textContainer}>
-          <Body1 color={colors.light}>{chapterText}</Body1>
+          <Body1 color={color}>{text}</Body1>
         </ScrollView>
       )}
     </View>
