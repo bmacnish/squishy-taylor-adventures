@@ -17,24 +17,22 @@ const styles = StyleSheet.create({
   },
 })
 
-type CreditType =
-  | {
-      credits: Record<string, string> | string
-    }
-  | string
+type CreditType = {
+  credits: Record<string, string> | string
+}
 
-export default function Credits(credits: CreditType) {
+export default function Credits({ credits }: CreditType) {
   const [roles, setRoles] = useState<Array<string>>()
 
   useEffect(() => {
-    if (typeof credits.credits === 'object') {
-      setRoles(Object.keys(credits.credits))
+    if (typeof credits === 'object') {
+      setRoles(Object.keys(credits))
     }
   }, [credits])
 
   const creditItems = roles?.map((role, index) => {
     const credit = role
-    const artist = typeof credits === 'object' ? credits.credits[role] : ''
+    const artist = typeof credits === 'object' ? credits[role] : ''
 
     return (
       <View style={styles.itemContainer} key={index}>
@@ -45,11 +43,11 @@ export default function Credits(credits: CreditType) {
   })
 
   const handleCredits = () => {
-    if (typeof credits.credits === 'string') {
+    if (typeof credits === 'string') {
       return (
         <>
           <H4Text style={styles.subtitle}>Credits</H4Text>
-          <Body1>{credits.credits}</Body1>
+          <Body1>{credits}</Body1>
         </>
       )
     } else {
