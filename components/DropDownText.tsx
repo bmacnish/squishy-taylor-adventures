@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { Body1 } from '../components/StyledText'
-import getChapterById from '../helpers/getChapterDataById'
 import { colors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
@@ -26,19 +25,18 @@ const styles = StyleSheet.create({
 })
 
 export default function DropDownText({
-  projectId,
-  chapterId,
+  chapterText,
+  labelText,
 }: {
-  projectId: string
-  chapterId: number
+  chapterText: string
+  labelText: string
 }) {
   const [toggleText, setToggleText] = useState(false)
-  const chapter = getChapterById(projectId, chapterId)
 
   return (
     <View style={styles.textToggleBarContainer}>
       <View style={[styles.textToggleBar, { borderBottomColor: colors.light }]}>
-        <Body1 color={colors.light}>READ ALONG</Body1>
+        <Body1 color={colors.light}>{labelText}</Body1>
         <TouchableOpacity onPress={() => setToggleText(!toggleText)}>
           {!toggleText ? (
             <AntDesign name="down-square-o" size={24} color={colors.light} />
@@ -49,7 +47,7 @@ export default function DropDownText({
       </View>
       {toggleText && (
         <ScrollView style={styles.textContainer}>
-          {chapter && <Body1 color={colors.light}>{chapter.text}</Body1>}
+          <Body1 color={colors.light}>{chapterText}</Body1>
         </ScrollView>
       )}
     </View>

@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
   },
 })
 
+const translations = {
+  dropDownText: 'read along',
+}
+
 type ChapterScreenProps = NativeStackScreenProps<HomeParamList, 'ChapterScreen'>
 
 export default function ChapterScreen({ route }: ChapterScreenProps) {
@@ -48,7 +52,12 @@ export default function ChapterScreen({ route }: ChapterScreenProps) {
             </H2Text>
           </View>
           <AudioPlayer chapterId={chapterId} />
-          <DropDownText projectId={projectId} chapterId={chapterId} />
+          {chapter.text && (
+            <DropDownText
+              chapterText={chapter.text}
+              labelText={translations.dropDownText}
+            />
+          )}
           {chapter?.nextPage && (
             <NextPage projectId={projectId} chapterId={chapterId} />
           )}
