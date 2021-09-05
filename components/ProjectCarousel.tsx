@@ -9,6 +9,7 @@ import useDynamicTextColor from '../hooks/useDynamicTextColor'
 import { Ionicons } from '@expo/vector-icons'
 import HeroImage from './HeroImage'
 import { HomeScreenNavigationProp } from '../types'
+import { colors } from '../constants/Colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ddd',
+    backgroundColor: colors.grey,
   },
   projectCardContainer: {
     flex: 1,

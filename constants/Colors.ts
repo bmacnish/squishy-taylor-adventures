@@ -6,6 +6,7 @@ export const colors = {
   magenta: '#bc3da9',
   blue: '#27568e',
   darkblue: '#043a75',
+  grey: '#ddd',
 }
 
 export default {

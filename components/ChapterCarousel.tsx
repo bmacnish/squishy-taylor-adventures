@@ -3,11 +3,12 @@ import React from 'react'
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 import { colors } from '../constants/Colors'
-import { H2Text, H3Text } from './StyledText'
-import { LinearGradient } from 'expo-linear-gradient'
+import { Body1, H2Text, H3Text, LabelText } from './StyledText'
 import { ChapterType } from '../hooks/useProjectData'
 import getProjectDataById from '../helpers/getProjectDataById'
 import { ProjectScreenNavigationProp } from '../types'
+import useDynamicTextColor from '../hooks/useDynamicTextColor'
+import Map, { Coordinates } from '../components/Map'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,17 +19,26 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.grey,
   },
   cardContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    height: '94%',
-    width: '92%',
+    flex: 1,
+  },
+  mapContainer: {
+    flex: 2,
+  },
+  descriptionContainer: {
+    flex: 1,
+    justifyContent: 'space-around',
+    paddingHorizontal: 16,
+  },
+  labelText: {
+    paddingBottom: 4,
   },
   chapterTitle: {
     paddingTop: 8,
   },
+
   chapterNumber: {
     fontWeight: '300',
   },
@@ -42,12 +52,15 @@ interface ChapterCarouselProps {
 interface IntroductionCard {
   title: string
   subtitle: string
+  additionalInformation?: string
+  coordinates?: Coordinates
 }
 
 export default function ChapterCarousel({
   projectId,
   chapters,
 }: ChapterCarouselProps) {
+  const textColor = useDynamicTextColor()
   const sliderWidth = Dimensions.get('window').width
   const itemWidth = Dimensions.get('window').width - 64
   const navigation = useNavigation<ProjectScreenNavigationProp>()
@@ -69,6 +82,8 @@ export default function ChapterCarousel({
     {
       title: project?.title ? project.title : '',
       subtitle: 'Before you begin...',
+      additionalInformation: project?.metadata.additionalInformation,
+      coordinates: project?.metadata.coordinates,
     },
     ...chapters,
   ]
@@ -76,76 +91,60 @@ export default function ChapterCarousel({
   function isFirstCard(
     card: ChapterType | IntroductionCard
   ): card is IntroductionCard {
-    return (card as IntroductionCard).subtitle !== undefined
+    return (
+      (card as IntroductionCard).subtitle !== undefined &&
+      (card as IntroductionCard).title !== undefined
+    )
   }
 
   const renderItem = ({ item }: { item: ChapterType | IntroductionCard }) => {
     if (!isFirstCard(item)) {
+      const { chapterId, chapterNumber, title } = item
       return (
-        <LinearGradient
-          colors={[colors.orange, colors.magenta, colors.darkblue]}
-          style={[styles.card]}
-          start={{ x: 0.1, y: 0.2 }}
+        <TouchableOpacity
+          onPress={() =>
+            onPress(projectId, chapterId, chapterNumber ? chapterNumber : '')
+          }
         >
-          <TouchableOpacity
-            onPress={() =>
-              onPress(
-                projectId,
-                item.chapterId,
-                item.chapterNumber ? item.chapterNumber : ''
-              )
-            }
-          >
-            <View style={styles.cardContainer}>
+          <View style={styles.card}>
+            <View>
               <H3Text
                 style={styles.chapterNumber}
-                color={colors.light}
+                color={textColor}
                 align="center"
               >
-                {item.chapterNumber}
+                {chapterNumber}
               </H3Text>
               <H2Text
-                color={colors.light}
+                color={textColor}
                 align="center"
                 style={styles.chapterTitle}
               >
-                {item.title}
+                {title}
               </H2Text>
             </View>
-          </TouchableOpacity>
-        </LinearGradient>
+          </View>
+        </TouchableOpacity>
       )
     } else {
+      const { coordinates, additionalInformation } = item
+
       return (
-        <LinearGradient
-          colors={[colors.orange, colors.magenta, colors.darkblue]}
-          style={[styles.card]}
-          start={{ x: 0.1, y: 0.2 }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              // TODO
-              console.log('Implement me!')
-            }}
-          >
-            <View style={styles.cardContainer}>
-              <H2Text
-                color={colors.light}
-                align="center"
-                style={styles.chapterTitle}
-              >
-                {item.title}
-              </H2Text>
-              <H3Text
-                style={styles.chapterNumber}
-                color={colors.light}
-                align="center"
-              >
-                {item.subtitle}
-              </H3Text>
+        <View style={styles.card}>
+          <View style={styles.cardContainer}>
+            {coordinates && (
+              <View style={styles.mapContainer}>
+                <Map coordinates={coordinates} />
+              </View>
+            )}
+            <View style={styles.descriptionContainer}>
+              <View>
+                <LabelText style={styles.labelText}>Before you start</LabelText>
+                <Body1>{additionalInformation}</Body1>
+              </View>
             </View>
-          </TouchableOpacity>
-        </LinearGradient>
+          </View>
+        </View>
       )
     }
   }

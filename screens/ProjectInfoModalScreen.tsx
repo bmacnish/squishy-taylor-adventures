@@ -10,6 +10,7 @@ import Credits from '../components/Credits'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import DropDownText from '../components/DropDownText'
 import useDynamicTextColor from '../hooks/useDynamicTextColor'
+import { ProjectType } from '../hooks/useProjectData'
 
 const styles = StyleSheet.create({
   container: {
@@ -41,12 +42,24 @@ export default function ProjectInfoModalScreen({
   const project = getProjectDataById(projectId)
   const textColor = useDynamicTextColor()
 
-  const onPress = () => {
+  const onPress = (project: ProjectType) => {
+    const navigateOnPress = () => {
+      navigation.navigate('ProjectScreen', {
+        projectId: project.projectId,
+        name: project?.title,
+      })
+    }
     Alert.alert('Purchase flow', 'This is a placeholder', [
       {
         text: 'OK',
         onPress: () => {
           navigation.goBack()
+        },
+      },
+      {
+        text: 'Listen now',
+        onPress: () => {
+          navigateOnPress()
         },
       },
     ])
@@ -86,7 +99,7 @@ export default function ProjectInfoModalScreen({
             <Button
               color={colors.orange}
               title={`Purchase ${project.title}`}
-              onPress={onPress}
+              onPress={() => onPress(project)}
             ></Button>
           )}
         </>
