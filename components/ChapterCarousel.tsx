@@ -91,10 +91,7 @@ export default function ChapterCarousel({
   function isFirstCard(
     card: ChapterType | IntroductionCard
   ): card is IntroductionCard {
-    return (
-      (card as IntroductionCard).subtitle !== undefined &&
-      (card as IntroductionCard).title !== undefined
-    )
+    return (card as IntroductionCard).subtitle !== undefined
   }
 
   const renderItem = ({ item }: { item: ChapterType | IntroductionCard }) => {
